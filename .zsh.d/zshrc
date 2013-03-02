@@ -12,7 +12,7 @@ source ${HOME}/.zshenv
 ### [ Display ] ###
 ###################
 if [ -n $DISPLAY ]; then
-#export DISPLAY=localhost:0.0
+ export DISPLAY=localhost:0.0
 fi
 
 #########################
@@ -57,24 +57,26 @@ colors
 # [ プロンプト表示フォーマット ]
 #   %%     %を表示
 #   %)     )を表示
-#   %l     端末名省略形 
 #   %M     ホスト名(FQDN) 
 #   %m     ホスト名(サブドメイン) 
 #   %n     ユーザー名 
-#   %y     端末名 
+#   %y     端末名
+#   %l     端末名省略形
 #   %#     rootなら#、他は%を表示 
 #   %?     直前に実行したコマンドの結果コード 
-#   %d     ワーキングディレクトリ %/ でも可 
-#   %~     ホームディレクトリからのパス 
-#   %h     ヒストリ番号 %! でも可 
+#   %d     カレントディレクトリ(フルパス)(%/ でも可) 
+#   %~     カレントディレクトリ(ホームディレクトリからのパス)
+#   %C     カレントディレクトリ(ディレクトリ名のみ)
+#   %c     カレントディレクトリ(ディレクトリ名のみ ${HOME}=${PWD}のとき~)(%. でも可)
+#   %h     ヒストリ番号 (%! でも可) 
 #   %a     The observed action, i.e. "logged on" or "logged off". 
 #   %S     (%s) 反転モードの開始/終了 %S abc %s とするとabcが反転 
 #   %U     (%u) 下線モードの開始/終了 %U abc %u とするとabcに下線 
 #   %B     (%b) 強調モードの開始/終了 %B abc %b とするとabcを強調 
-#   %t     時刻表示(12時間単位、午前/午後つき) %@ でも可 
+#   %t     時刻表示(12時間単位、午前/午後つき) (%@ でも可) 
 #   %T     時刻表示(24時間表示) 
 #   %*     時刻表示(24時間表示秒付き) 
-#   %w     日表示(dd) 日本語だと 曜日 日 
+#   %w     日表示(day dd) 日本語だと 曜日 日 
 #   %W     年月日表示(mm/dd/yy) 
 #   %D     年月日表示(yy-mm-dd)
 #   %E     終了でのクリア
@@ -84,15 +86,15 @@ colors
 ##########################################################
 
 # 色の定義
-DEFAULT="%{[0m%}"
-RESET="%{${reset_color}%}"
-GREEN="%{${fg[green]}%}"
-BLUE="%{${fg[blue]}%}"
-RED="%{${fg[red]}%}"
-CYAN="%{${fg[cyan]}%}"
-YELLOW="%{${fg[yellow]}%}"
-MAGENTA="%{${fg[magenta]}%}"
-WHITE="%{${fg[white]}%}"
+local DEFAULT="%{[0m%}"
+local RESET="%{${reset_color}%}"
+local GREEN="%{${fg[green]}%}"
+local BLUE="%{${fg[blue]}%}"
+local RED="%{${fg[red]}%}"
+local CYAN="%{${fg[cyan]}%}"
+local YELLOW="%{${fg[yellow]}%}"
+local MAGENTA="%{${fg[magenta]}%}"
+local WHITE="%{${fg[white]}%}"
 
 ## (Now) ##
 case ${UID} in
@@ -102,17 +104,21 @@ case ${UID} in
     PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
     RPROMPT="%{$fg_bold[white]%}[%{$reset_color%}%{$fg[cyan]%}%~%{$reset_color%}%{$fg_bold[white]%}]%{$reset_color%}"
     SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
-    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-    #    PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+
+    ## rootユーザー且つリモート接続の場合
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+      PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
     ;;
 *)
     ## 一般ユーザの場合
-    PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${BLUE}%m%u${DEFAULT}]$ ${RESET}"
+    PROMPT="%B${MAGENTA}%n${DEFAULT}%b@%U${BLUE}%m%u${DEFAULT}]$ ${RESET}"
     PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
     RPROMPT="[%B${CYAN}%~${WHITE}%b]${RESET}"
     SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
-    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-    #    PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+
+    ## 一般ユーザの且つリモート接続の場合
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+      PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${BLUE}%m%u${DEFAULT}]$ ${RESET}"
     ;;
 esac
 
@@ -153,16 +159,6 @@ esac
 #    SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
 ##    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
 #        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-#    ;;
-#esac
-
-
-# set terminal title including current directory
-#case "${TERM}" in
-#kterm*|xterm)
-#    precmd() {
-#        echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
-#    }
 #    ;;
 #esac
 
@@ -237,6 +233,17 @@ esac
 ## コマンド実行前に呼び出されるフック。
 #precmd_functions=($precmd_functions update_prompt)
 
+###########################
+### [ Expend Terminal ] ###
+###########################
+# 特定のターミナルでタイトルにユーザ名とホスト名とカレントディレクトリを表示。
+case "${TERM}" in
+kterm*|xterm)
+    precmd() {
+        echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
+    }
+    ;;
+esac
 
 #########################
 ### [ Expend Window ] ###
@@ -318,10 +325,13 @@ freebsd*|darwin*)
 linux*)
   alias ls="ls -F --color"
   ;;
+cygwin)
+  alias ls="ls -F --color=auto"
+  ;;
 esac
 
 ###################################
-### [ Expend Change directory ] ###
+### [ Expend Change Directory ] ###
 ###################################
 ## ディレクトリ名だけでcdする。
 setopt auto_cd
@@ -336,7 +346,9 @@ chpwd_functions=($chpwd_functions dirs)
 setopt pushd_to_home
 ## pushdで同じディレクトリを重複してpushしない。
 setopt pushd_ignore_dups
-
+#cd後自動でls
+function chpwd() { ls -v -F --color=auto }
+ 
 ##########################
 ### [ Expend History ] ###
 ##########################
@@ -411,6 +423,9 @@ setopt no_beep
 ## 辞書順ではなく数字順に並べる。
 setopt numeric_glob_sort
 
+## 誤字の簡易訂正
+setopt CORRECT_ALL
+
 ########################
 ### [ Other Option ] ###
 ########################
@@ -438,6 +453,10 @@ alias rm='rm -i'
 alias pd="pushd"
 alias po="popd"
 alias color='perl ~/.zsh.d/color.pl'
+
+#---[ option ]--#
+alias -g G='| grep '
+alias -g L='| less'
 
 #---[ xterm ]---#
 alias xb='xterm -sb -bg black -fg white &'
