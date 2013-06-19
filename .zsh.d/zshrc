@@ -1,4 +1,4 @@
-# .zsh.d/zshrc
+#! zsh
 
 #set   ZSHDIR=${HOME}/.zsh.d
 source ${HOME}/.zshenv
@@ -12,11 +12,15 @@ source ${HOME}/.zshenv
 ### [ Display ] ###
 ###################
 if [ -x $DISPLAY ]; then
- export DISPLAY=localhost:0.0
+ export DISPLAY=localhost:10.0
 fi
 #if [ -n $DISPLAY ]; then
 # export DISPLAY=localhost:0.0
 #fi
+function disp {
+ export DISPLAY=localhost:$1.0
+ echo "export DISPLAY=localhost:$1.0" >> ${HOME}/.zshrc
+}
 
 #########################
 ### [ Expend Prompt ] ###
@@ -374,7 +378,7 @@ fi
 if [ "$PAGER" = "lv" ]; then
     export LV="-c -l"
 else
-    alias lv="$PAGER"
+    alias  lv="$PAGER"
 fi
 
 ########################
@@ -391,7 +395,7 @@ REPORTTIME=3
 #####################
 ### [ Set Alias ] ###
 #####################
-#---[ cmd ]---#
+#---[ unix cmd ]---#
 alias l='ls -la'
 alias ll='ls -l'
 alias la='ls -a'
@@ -406,6 +410,8 @@ alias touch='nocorrect touch'
 alias pd="pushd"
 alias po="popd"
 alias color='perl ~/.zsh.d/color.pl'
+alias g++0x='g++ -std=c++0x -Wall -Wextra'
+
 
 #---[ option ]--#
 alias -g G='| grep '
