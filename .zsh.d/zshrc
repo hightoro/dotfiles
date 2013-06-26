@@ -1,12 +1,16 @@
 #! zsh
 
 #set   ZSHDIR=${HOME}/.zsh.d
-source ${HOME}/.zshenv
+#source ${HOME}/.zshenv
 
 ################
 ### [ echo ] ###
 ################
-#echo "read my_zsh_dir/zshrc"
+#echo "read ZDOTDIR/zshrc"
+function resource {
+ source ${HOME}/.zshrc
+ source ${ZDOTDIR}/zshrc
+}
 
 ###################
 ### [ Display ] ###
@@ -26,8 +30,7 @@ function disp {
 ### [ Expend Prompt ] ###
 #########################
 ## color 有効
-autoload -Uz colors
-colors
+autoload -Uz colors; colors
 
 ##########################################################
 #
@@ -440,6 +443,15 @@ alias xy5='xterm -sb -bg cornsilk -fg black &'
 alias xy6='xterm -sb -bg NavajoWhite -fg black &'
 alias xg='xterm -sb -bg YellowGreen -fg black &'
 alias xcollar='showrgb'
+
+
+#=============================
+# source zsh-syntax-highlighting 
+#============================= 
+if [ -f ~/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+ source ~/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 
 ### end of file
 
