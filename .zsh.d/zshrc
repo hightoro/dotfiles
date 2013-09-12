@@ -1,29 +1,36 @@
-# .zsh.d/zshrc
+#! zsh
 
 #set   ZSHDIR=${HOME}/.zsh.d
-source ${HOME}/.zshenv
+#source ${HOME}/.zshenv
 
 ################
 ### [ echo ] ###
 ################
-#echo "read my_zsh_dir/zshrc"
+#echo "read ZDOTDIR/zshrc"
+function resource {
+ source ${HOME}/.zshrc
+ source ${ZDOTDIR}/zshrc
+}
 
 ###################
 ### [ Display ] ###
 ###################
 if [ -x $DISPLAY ]; then
- export DISPLAY=localhost:0.0
+ export DISPLAY=localhost:10.0
 fi
 #if [ -n $DISPLAY ]; then
 # export DISPLAY=localhost:0.0
 #fi
+function disp {
+ export DISPLAY=localhost:$1.0
+ echo "export DISPLAY=localhost:$1.0" >> ${HOME}/.zshrc
+}
 
 #########################
 ### [ Expend Prompt ] ###
 #########################
 ## color 有効
-autoload -Uz colors
-colors
+autoload -Uz colors; colors
 
 ##########################################################
 #
@@ -374,7 +381,7 @@ fi
 if [ "$PAGER" = "lv" ]; then
     export LV="-c -l"
 else
-    alias lv="$PAGER"
+    alias  lv="$PAGER"
 fi
 
 ########################
@@ -391,19 +398,23 @@ REPORTTIME=3
 #####################
 ### [ Set Alias ] ###
 #####################
-#---[ cmd ]---#
+#---[ unix cmd ]---#
 alias l='ls -la'
 alias ll='ls -l'
 alias la='ls -a'
-alias cp='cp -i'
+alias cp='nocorrect cp -i'
 alias hi='history 50'
-alias mv='mv -i'
+alias mv='nocorrect mv -i'
 alias p='pwd'
 alias rr="command rm -rf"
 alias rm='rm -i'
+alias mkdir='nocorrect mkdir'
+alias touch='nocorrect touch'
 alias pd="pushd"
 alias po="popd"
 alias color='perl ~/.zsh.d/color.pl'
+alias g++0x='g++ -std=c++0x -Wall -Wextra'
+
 
 #---[ option ]--#
 alias -g G='| grep '
@@ -432,6 +443,15 @@ alias xy5='xterm -sb -bg cornsilk -fg black &'
 alias xy6='xterm -sb -bg NavajoWhite -fg black &'
 alias xg='xterm -sb -bg YellowGreen -fg black &'
 alias xcollar='showrgb'
+
+
+#=============================
+# source zsh-syntax-highlighting 
+#============================= 
+if [ -f ~/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+ source ~/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 
 ### end of file
 
