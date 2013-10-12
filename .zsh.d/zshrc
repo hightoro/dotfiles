@@ -265,7 +265,8 @@ linux*)
   alias ls="ls -F --color"
   ;;
 cygwin)
-  alias ls="ls -F --color=auto"
+  #alias ls="ls -F --color=auto"
+  alias ls="ls -I'NTUSER.DAT*' -I'ntuser*' -F --color=auto"
   ;;
 esac
 
