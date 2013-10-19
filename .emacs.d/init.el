@@ -20,6 +20,8 @@
 
 ;;; load-pathに追加するフォルダ(通常手法)
 (setq load-path (append '("~/.emacs.d") load-path))
+;(setq load-path (append '("~/.emacs.d/script/") load-path))
+;(normal-top-level-add-subdirs-to-load-path))
 
 ;;; Localeに合わせた環境の設定(Language)
 (set-locale-environment nil)
