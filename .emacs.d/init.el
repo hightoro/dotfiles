@@ -83,17 +83,22 @@
 ;;;;;;;;;;;;;;;
 ;;; back up ;;;
 ;;;;;;;;;;;;;;;
-;;; バックアップファイルを作らない 
-;(setq backup-inhibited t)
+;;; オートセーブファイルの保存先指定
+(setq auto-save-file-name-transforms
+      `((".*" ,(expand-file-name "~/.emacs.d/backup") t)))
 
 ;;; 終了時にオートセーブファイルを消す 
 (setq delete-auto-save-files t)
+
+;;; バックアップファイルを作らない 
+;(setq backup-inhibited t)
 
 ;;; バックアップファイルの保存先指定
 (setq backup-directory-alist
   (cons (cons "\\.*$" (expand-file-name "~/.emacs.d/backup"))
     backup-directory-alist))
 
+;;; バックアップファイルの保存数設定
 (setq version-control t)
 (setq kept-new-versions 5)
 ;(setq kept-old-versions 5)
