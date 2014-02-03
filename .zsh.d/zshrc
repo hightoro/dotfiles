@@ -110,7 +110,7 @@ local WHITE="%{${fg[white]}%}"
 case ${UID} in
 0)
     ## rootユーザの場合
-    PROMPT="%{$fg_bold[green]%}%m%{$fg_bold[red]%}#%{$reset_color%} "
+    PROMPT="%B%U%${MAGENTA}%n${DEFAULT}%u%b@%U${WHITE}%m%u${RED}]# ${RESET} "
     PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
     RPROMPT="%{$fg_bold[white]%}[%{$reset_color%}%{$fg[cyan]%}%~%{$reset_color%}%{$fg_bold[white]%}]%{$reset_color%}"
     SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
@@ -121,7 +121,7 @@ case ${UID} in
     ;;
 *)
     ## 一般ユーザの場合
-    PROMPT="%B${MAGENTA}%n${DEFAULT}%b@%U${BLUE}%m%u${DEFAULT}]$ ${RESET}"
+    PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${WHITE}%m%u${DEFAULT}]$ ${RESET}"
     PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
     RPROMPT="[%B${CYAN}%~${WHITE}%b]${RESET}"
     SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
