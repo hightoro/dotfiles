@@ -446,11 +446,11 @@ alias xg='xterm -sb -bg YellowGreen -fg black &'
 alias xcollar='showrgb'
 
 
-#=============================
-# source zsh-syntax-highlighting 
-#============================= 
-if [ -f ~/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
- source ~/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#=============================================
+# source zsh-users/zsh-syntax-highlighting 
+#============================================= 
+if [ -f ~/.zsh.d/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+ source ~/.zsh.d/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 
