@@ -1,4 +1,4 @@
 # README #
 
-git clone git@github.com:hightoro/zshrc
+git clone git@github.com:hightoro/zsh ~/.zsh.d
 
