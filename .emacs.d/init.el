@@ -33,15 +33,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; enveroment ( font ) ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Windowsで英数と日本語にMeiryoを指定 
+;; Windowsで英数と日本語にMeiryoを指定
 ;; Linuxで英数と日本語にRictyを指定
 ;(let ((ws window-system))
-;  (cond ((eq ws 'w32) 
+;  (cond ((eq ws 'w32)
 ;	 (set-face-attribute 'default nil
 ;			     :family "Meiryo" ;; 英数
-;			     :height 100) 
-;	 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Meiryo"))) ;; 日本語 
-;	((eq ws 'ns) 
+;			     :height 100)
+;	 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Meiryo"))) ;; 日本語
+;	((eq ws 'ns)
 ;	 (set-face-attribute 'default nil
 ;			     :family "Ricty" ;; 英数
 ;			     :height 140)
@@ -66,10 +66,10 @@
 ;;; ツールバー非表示
 ;(tool-bar-mode -1)
 
-;;; メニューバーを非表示 
-;(menu-bar-mode -1) 
+;;; メニューバーを非表示
+;(menu-bar-mode -1)
 
-;;; スクロールバー非表示 
+;;; スクロールバー非表示
 (set-scroll-bar-mode nil)
 
 ;;; 行番号追加(linum使用)
@@ -77,8 +77,8 @@
 (require 'linum)
 (global-linum-mode t)
 (setq linum-format "%5d") ;; フォーマット
-;(set-face-attribute 'linum nil 
-;  :foreground "#800" ;; 色 
+;(set-face-attribute 'linum nil
+;  :foreground "#800" ;; 色
 ;  :height 0.9)       ;; 大きさ
 
 ;;; メニューバー日本語化(http://www11.atwiki.jp/s-irie/pages/13.html)
@@ -113,7 +113,7 @@
 (setq show-paren-style 'mixed)
 
 ;; 行末の空白を強調表示
-(setq-default show-trailing-whitespace t) 
+(setq-default show-trailing-whitespace t)
 ;;(set-face-background 'trailing-whitespace "#b14770")
 
 
@@ -128,22 +128,22 @@
 ;;; カラーテーマを使用する
 ;(add-to-list 'load-path "~/.emacs.d/elisp/color-theme-6.6.0/") ;ディレクトリの指定
 ;(load "~/.emacs.d/elisp/color-theme-6.6.0/color-theme.el")
-;(require 'color-theme) 
+;(require 'color-theme)
 ;(add-to-list 'load-path "~/.emacs.d/theme") ;ディレクトリの指定
 ;(require 'color-theme)
-;(eval-after-load "color-theme" 
+;(eval-after-load "color-theme"
 ;  '(progn
 ;     (color-theme-initialize)
 ;     (color-theme-molokai)
 ;))
 ;(color-theme-initialize)
 
-;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/") 
-;(setq molokai-theme-kit t) 
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;(setq molokai-theme-kit t)
 ;(load-theme 'molokai t)
 
 ;;; テーマフレームワークを使用する
-;(setq custom-theme-directory "~/.emacs.d/themes/") ;ディレクトリの指定 
+;(setq custom-theme-directory "~/.emacs.d/themes/") ;ディレクトリの指定
 
 ;;; [ (load-theme '設定したいテーマの名前 t) ]
 ;(load-theme 'foobar t)
@@ -172,9 +172,9 @@
 ;;; mode line ;;;
 ;;;;;;;;;;;;;;;;;
 ;;; モードラインに行番号表示
-(line-number-mode t) 
+(line-number-mode t)
 
-;;; モードラインに列番号表示 
+;;; モードラインに列番号表示
 (column-number-mode t)
 
 ;;; emacs-powerlineを使用する
@@ -185,11 +185,11 @@
 ;;;;;;;;;;;;;;;
 ;;; Tab Key ;;;
 ;;;;;;;;;;;;;;;
-;; タブをスペースで扱う 
+;; タブをスペースで扱う
 (setq-default indent-tabs-mode nil)    ;; tab -> space
 
 ;; タブ幅
-(custom-set-variables '(tab-width 4))  
+(custom-set-variables '(tab-width 4))
 
 
 
@@ -340,26 +340,28 @@
 ;;; パッケージを追加
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")) ;; MELPAを追加
 ;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/")) ;; Marmaladeを追加
-;(package-initialize) ;; 初期化
+
+;; パッケージの初期化
+(package-initialize) ;; 初期化
 
 ;; パッケージ情報の更新　と　インストール
 (package-refresh-contents) ;; 更新
 
-;(defvar my/favorite-packages ;; インストールするパッケージ
-; '(
-;   auto-complete fuzzy popup pos-tip    ;;;; for auto-complete
+(defvar my/favorite-packages ;; インストールするパッケージ
+ '(
+   auto-complete fuzzy popup pos-tip    ;;;; for auto-complete
    ;popwin elscreen yascroll buffer-move ;;;; buffer utils
    ;flycheck flymake-jslint              ;;;; flymake
-;   helm
-;   magit git-gutter
+   helm
+   magit git-gutter
    ;;;; go go-mode
    ;;;; python jedi
-;))
+))
 
 ;; my/favorite-packagesからインストールしていないパッケージをインストール
-;(dolist (package my/favorite-packages)
-;  (unless (package-installed-p package)
-;    (package-install package)))
+(dolist (package my/favorite-packages)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 
 
