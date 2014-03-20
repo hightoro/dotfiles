@@ -57,6 +57,18 @@
 ;;; 自動スペルチェック
 (setq-default flyspell-mode t) (setq ispell-dictionary "american")
 
+;;;;;;;;;;;;;;
+;;; cursor ;;;
+;;;;;;;;;;;;;;
+;; カーソルに関して
+(set-cursor-color "white")        ;;カーソルの色
+(setq blink-cursor-interval 0.5)  ;;カーソルの点滅間隔
+(setq blink-cursor-delay 1.0)     ;;カーソルの点滅開始される放置時間
+(blink-cursor-mode 1)             ;;カーソルの点滅on
+
+;; カーソルのある行に関して
+(global-hl-line-mode t)           ;;カーソル行のハイライトon
+(set-face-background 'hl-line "navy") ;;カーソル行の色
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; menu-bar & title & mode line ;;;
@@ -70,6 +82,8 @@
 ;;;;;;;;;;;;;;;;;;;
 ;;; color theme ;;;
 ;;;;;;;;;;;;;;;;;;;
+; カラーテーマは非推奨
+; テーマフレーム　
 ;(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0") 
 ;(require 'color-theme)
 ;(eval-after-load "color-theme" 
@@ -140,3 +154,15 @@
 
 
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
