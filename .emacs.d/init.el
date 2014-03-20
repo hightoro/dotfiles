@@ -40,7 +40,7 @@
   (global-font-lock-mode t))
 
 ;;; 行番号追加(linum使用)
-(load "~/.emacs.d/script/linum.el")
+(load "~/.emacs.d/elisp/linum.el")
 (require 'linum)
 (global-linum-mode t)
 (setq linum-format "%5d")
