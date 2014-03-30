@@ -4,17 +4,42 @@
 ;;; ELPA ;;;
 ;;;;;;;;;;;;
 
-;; パッケージ情報の更新　と　インストール
-(package-refresh-contents) ;; 更新
-
-(defvar my/favorite-packages ;; インストールするパッケージ
+;; パッケージ情報の更新
+(package-refresh-contents)
+;; インストールリストを作成
+(defvar my/favorite-packages
  '(
-   auto-complete fuzzy popup pos-tip    ;;;; for auto-complete
-   ;popwin elscreen yascroll buffer-move ;;;; buffer utils
-   ;flycheck flymake-jslint              ;;;; flymake
+
+   ;; auto-complete
+   auto-complete fuzzy popup pos-tip
+
+   ;; buffer utils
+   ;popwin elscreen yascroll buffer-move
+
+   ;; flymake
+   flycheck flycheck-pos-tip ;flymake-jslint
+
+   ;; anything
    helm
+
+   ;; undo
+   undo-tree undohist
+
+   ;; snippet
+   yasnippet
+
+   ;; find extension
+   anzu
+
+   ;; git
    magit git-gutter
+
+   ;; C/C++
+   ;auto-complete-clang-async
+   c-eldoc
+
    ;;;; go go-mode
+
    ;;;; python jedi
 ))
 
