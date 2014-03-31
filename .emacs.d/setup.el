@@ -1,14 +1,22 @@
 ; setup.el
-
+;
+; > emacs -Q -l setup.el
+;
 ;;;;;;;;;;;;
 ;;; ELPA ;;;
 ;;;;;;;;;;;;
+(require 'package)
+(setq package-user-dir (concat user-emacs-directory "elpa"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(package-initialize)
 
 ;; パッケージ情報の更新
 (package-refresh-contents)
 ;; インストールリストを作成
 (defvar my/favorite-packages
  '(
+   ;; init
+   init-loader
 
    ;; auto-complete
    auto-complete fuzzy popup pos-tip
@@ -19,7 +27,7 @@
    ;; flymake
    flycheck flycheck-pos-tip ;flymake-jslint
 
-   ;; anything
+   ;; anything/helm
    helm
 
    ;; undo
