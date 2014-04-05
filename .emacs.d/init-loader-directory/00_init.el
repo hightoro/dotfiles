@@ -219,7 +219,7 @@
 ;;;;;;;;;;;;;;;;;
 ;;; クリップボードの共有
 (setq x-select-enable-clipborad t)
-(global-set-key "\C-y" 'x-clipborad-yank)
+
 
 
 
@@ -229,11 +229,6 @@
 ;;; ホイールマウス
 (mouse-wheel-mode t)
 (setq mouse-wheel-follow-mouse t)
-
-;;; キーバインド
-;(define-key global-map "\C-h" 'delete-backward-char) ; 削除
-(global-set-key "\C-z" 'undo) ; C-z で undo
-
 
 
 ;;;;;;;;;;;;;
