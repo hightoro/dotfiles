@@ -33,11 +33,14 @@
    ;; undo
    undo-tree undohist
 
+   ;; quick-run
+   quickrun
+
    ;; snippet
    yasnippet
 
    ;; find extension
-   anzu
+   anzu hlinum
 
    ;; git
    magit git-gutter
