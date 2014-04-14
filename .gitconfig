@@ -1,0 +1,11 @@
+[user]
+	email = ayanokouji11@gmail.com
+	name = hightoro
+[core]
+	editor = emacs
+	excludesfile = ~/.gitignore
+[color]
+	ui = true
+[alias]
+	st = status -sb
+	cm = commit -a -m

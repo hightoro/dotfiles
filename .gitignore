@@ -1,0 +1,9 @@
+## Temporary Files
+*~
+
+## Object Files
+*.[ao]
+
+## Executable
+*.exe
+*.elc
