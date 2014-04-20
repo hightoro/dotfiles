@@ -40,7 +40,10 @@
    yasnippet
 
    ;; find extension
-   anzu hlinum
+   anzu hlinum volatile-highlights
+
+   ;; powerline
+   powerline
 
    ;; git
    magit git-gutter

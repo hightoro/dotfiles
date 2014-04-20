@@ -47,15 +47,6 @@
 ;;; スクロールバー非表示
 (set-scroll-bar-mode nil)
 
-;;; 行番号追加(linum使用)
-(load "~/.emacs.d/elisp/linum.el")
-(require 'linum)
-(global-linum-mode t)
-(setq linum-format "%5d") ;; フォーマット
-;(set-face-attribute 'linum nil
-;  :foreground "#800" ;; 色
-;  :height 0.9)       ;; 大きさ
-
 ;;; メニューバー日本語化(http://www11.atwiki.jp/s-irie/pages/13.html)
 ;(load "~/.emacs.d/elisp/menu-tree.el")
 ;(if (and (= emacs-major-version 22)
