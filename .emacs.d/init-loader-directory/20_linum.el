@@ -1,6 +1,7 @@
 ;; ver24あたりで標準で入ったそうです
 ;;(load "~/.emacs.d/elisp/linum.el")
 (require 'linum)
+(require 'hlinum)
 
 ;; active
 (global-linum-mode t)
