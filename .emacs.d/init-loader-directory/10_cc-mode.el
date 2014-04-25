@@ -34,7 +34,7 @@
 
 
 )
-(add-hook 'c-mode-common-hook 'hightoro/c++-common-hook)
+(add-hook 'c-mode-common-hook 'hightoro/c++-mode-hook)
 
 ;;; *.hをc++モードで開く
 ;(add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))
