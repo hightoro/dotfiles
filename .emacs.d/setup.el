@@ -39,8 +39,8 @@
    ;; snippet
    yasnippet
 
-   ;; find extension
-   anzu hlinum volatile-highlights
+   ;; other
+   anzu hlinum volatile-highlights yascroll
 
    ;; powerline
    powerline

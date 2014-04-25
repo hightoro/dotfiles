@@ -4,13 +4,20 @@
 (require 'hlinum)
 
 ;; active
-(global-linum-mode t)
+;(global-linum-mode t)
+(custom-set-variables '(global-linum-mode t))
+(hlinum-activate)
 
-;; setting
+;; setting (linum)
 (setq linum-format "%5d") ;; フォーマット
 ;(set-face-attribute 'linum nil
 ; :foreground "#800" ;; 色
 ; :height 0.9) ;; 大きさ
+
+;; setting (hlinum)
+(custom-set-faces '(linum-highlight-face
+                    ((t ( :foreground "white"
+                          :background "blue")))))
 
 ;; http://d.hatena.ne.jp/daimatz/20120215/1329248780
 ;; linum-mode を軽くする。
