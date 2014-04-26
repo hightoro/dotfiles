@@ -3,18 +3,37 @@
 (require 'flycheck-autoloads)
 
 ;; active flycheck (init)
+;(flycheck-mode t)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(setq flycheck-check-syntax-automatically '(mode-enabled save))
 
 ;; セーブした時だけにチェック
 (custom-set-variables '(flycheck-check-syntax-automatically '(mode-enabled save)))
 ;; 下線をなくす
 (custom-set-variables '(flycheck-highlighting-mode 'nil))
 
-;; c-mode/c++-mode
+;; c-mode
 (add-hook 'c-mode-hook 'flycheck-mode)
+
+;; c++-mode
 (add-hook 'c++-mode-hook (lambda ()
-                           (custom-set-variables '(flycheck-clang-language-standard "c++1y"))
-                           (custom-set-variables '(flycheck-clang-standard-library "libc++"))))
+                           (custom-set-variables '(flycheck-clang-language-standard "c++1y"))))
+
+;(add-hook 'c++-mode-hook (lambda ()
+;                           (setq flycheck-clang-language-standard "c++11")
+;                           (setq flycheck-clang-standard-library "libc++") ))
+
+;(flycheck-define-checker c/c++
+;  "A C/C++ checker using g++."
+;  :command ("g++" "-Wall" "-Wextra" source)
+;  :error-patterns ((error line-start
+;                          (file-name) ":" line ":" column ":" " エラー: " (message) 
+;                          line-end)
+;                   (warning line-start
+;                            (file-name) ":" line ":" column ":" " 警告: " (message)
+;                            line-end))
+;  :modes (c-mode c++-mode))
+
 
 ;; active [flycheck-pos-tip]
 (eval-after-load 'flycheck
