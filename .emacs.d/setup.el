@@ -21,8 +21,11 @@
    ;; auto-complete
    auto-complete fuzzy popup pos-tip
 
+   ;; popwin + direx
+   popwin direx
+
    ;; buffer utils
-   ;popwin elscreen yascroll buffer-move
+   ;yascroll buffer-move
 
    ;; flymake
    flycheck flycheck-pos-tip ;flymake-jslint
@@ -47,6 +50,12 @@
 
    ;; git
    magit git-gutter
+
+   ;; folding
+   fold-dwim
+
+   ;; elscreen
+   elscreen
 
    ;; C/C++
    ;auto-complete-clang-async

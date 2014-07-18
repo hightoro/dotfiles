@@ -1,6 +1,5 @@
-;; init.el
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; enveroment ( path ) ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; load-path 追加用の関数の定義(http://sakito.jp/emacs/emacs23.html)
@@ -34,8 +33,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")) ;; MELPAを追加
 ;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/")) ;; Marmaladeを追加
 ;; パッケージの初期化
-(package-initialize) ;; 初期化
-
+(package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;
 ;;; init-loader ;;;
@@ -45,20 +43,5 @@
 ;;; 設定ファイルがあるディレクトリを指定
 ;(init-loader-load)                           ; 指定しなければ"~/init-loader-directory/"を読みに行く
 ;(init-loader-load "~/.emacs.d/profile.d/")   ;
-(init-loader-load "~/.emacs.d/init-loader-directory/")
+(init-loader-load "~/.emacs.d/inits/")
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

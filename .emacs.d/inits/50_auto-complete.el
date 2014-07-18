@@ -12,11 +12,11 @@
 (setq ac-use-menu-map t)      ; C-n/C-pで候補選択可能
 
 ;; option
-(setq ac-auto-start nil)      ; 自動で補完画面を出すならt.
+(setq ac-auto-start 2)        ; 自動で補完画面を出すならt.
                               ; 補完キーを押すまで補完画面を出さないならnil.
                               ; 数字なら文字数.
 (setq ac-auto-show-menu 0.5)  ; 0.5秒でメニュー表示
-(setq ac-ignore-case)         ; 大文字・小文字を区別しない
+(setq ac-ignore-case nil)     ; 大文字・小文字を区別する(t)しない(nil)
 (setq ac-use-comphist t)      ; 補完候補をソート
 (setq ac-menu-height 22)      ; 補完列表示数
 (setq ac-candidate-limit nil) ; 補完候補表示を無制限に
@@ -25,12 +25,12 @@
 
 ;; path
 ; 辞書ファイルのディレクトリ
-; (setq ac-dictionary-directories "~/.emacs.d/elisp/auto-complete/ac-dict")
+; (setq ac-dictionary-directories "~/.emacs.d/ac-dict")
 ; 補完履歴のキャッシュ先
-; (setq ac-comphist-file "~/.emacs.d/elisp/auto-complete/ac-comphist.dat")
+; (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
 
 ;;
-;; auto-complete-clang
+;; auto-complete-clang ( using clang_complete )
 ;;
 ;(require 'auto-complete-clang)
 (require 'auto-complete-clang-async)
@@ -40,10 +40,10 @@
   (setq ac-clang-complete-executable (expand-file-name "~/.emacs.d/clang-complete"))
   (setq ac-sources (append '(ac-source-clang-async) ac-sources))   ; source
   (setq ac-clang-cflags (append '("-std=c++1y") ac-clang-cflags))  ; append cflags(c++-1y)
-  ;(setq ac-clang-cflags
-  ;      (mapcar (lambda (item)
-  ;                                (concat "-I" (expand-file-name item)))
-  ;                              (split-string "~/local/llvm/lib/clang/3.4/include ~/local/include")))
+  (setq ac-clang-cflags
+        (mapcar (lambda (item)
+                  (concat "-I" (expand-file-name item)))
+                (split-string "/usr/include/clang/3.4/include /usr/include")))
   (ac-clang-launch-completion-process)
 )
 
