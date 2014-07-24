@@ -19,7 +19,7 @@
    init-loader
 
    ;; auto-complete
-   auto-complete fuzzy popup pos-tip
+   auto-complete fuzzy popup pos-tip auto-complete-clang-async
 
    ;; popwin + direx
    popwin direx
@@ -64,6 +64,8 @@
    ;;;; go go-mode
 
    ;;;; python jedi
+
+
 ))
 
 ;; my/favorite-packagesからインストールしていないパッケージをインストール
