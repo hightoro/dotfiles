@@ -26,9 +26,10 @@
 ;;;;;;;;;;;;;;;;;;;
 ;;; 英語
  (set-face-attribute 'default nil
-             :family "Consolas" ;; font
-             ;:face "Ricty"
-             :height 140)    ;; font size
+                     ;:family "Consolas" ;; font
+                     ;:family "Menlo"
+                     :family "monaco"
+                     :height 140)    ;; font size
 
 ;;; 日本語
 
