@@ -57,6 +57,9 @@
    ;; elscreen
    elscreen
 
+   ;; theme
+   nzenburn-theme
+
    ;; C/C++
    ;auto-complete-clang-async
    c-eldoc

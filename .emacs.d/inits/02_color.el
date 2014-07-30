@@ -35,9 +35,15 @@
 ;(setq molokai-theme-kit t)
 ;(load-theme 'molokai t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; color theme framwork ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; テーマフレームワークを使用する
 ;(setq custom-theme-directory "~/.emacs.d/themes/") ;ディレクトリの指定
 
-;;; [ (load-theme '設定したいテーマの名前 t) ]
+;;; [ (load-theme '設定たしいテーマの名前 t) ]
 ;(load-theme 'foobar t)
 ;(load-theme 'tsdh-dark t)
+
+(load-theme 'nzenburn t)
+

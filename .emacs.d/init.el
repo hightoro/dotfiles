@@ -14,9 +14,11 @@
 
 ;;; load-pathに追加するフォルダ(上記関数を使用)
 ;; 2つ以上フォルダを指定する場合の引数 => (add-to-load-path "elisp" "xxx" "xxx")
-(add-to-load-path "~/.emacs.d/"
-                  "~/.emacs.d/elisp/"
-                  "~/.emacs.d/elpa/")
+(add-to-load-path
+		;"~/local/share/emacs/24.3/"
+		"~/.emacs.d/"
+		"~/.emacs.d/elisp/"
+		"~/.emacs.d/elpa/")
 
 ;;; load-pathに追加するフォルダ(通常手法)
 ;(setq load-path (append '("~/.emacs.d/") load-path))
@@ -31,7 +33,7 @@
 (require 'package)
 ;;; パッケージを追加
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")) ;; MELPAを追加
-;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/")) ;; Marmaladeを追加
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/")) ;; Marmaladeを追加
 ;; パッケージの初期化
 (package-initialize)
 
@@ -43,6 +45,5 @@
 (require 'init-loader)
 ;;; 設定ファイルがあるディレクトリを指定
 ;(init-loader-load)                           ; 指定しなければ"~/init-loader-directory/"を読みに行く
-;(init-loader-load "~/.emacs.d/profile.d/")   ;
 (init-loader-load "~/.emacs.d/inits/")
 

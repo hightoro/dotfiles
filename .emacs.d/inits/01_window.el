@@ -21,12 +21,28 @@
 ;    (setq menu-tree-coding-system 'utf-8))
 ;(require 'menu-tree nil t)
 
+;;;;;;;;;;;;;;;;;;;
+;;; font config ;;;
+;;;;;;;;;;;;;;;;;;;
+;;; 英語
+ (set-face-attribute 'default nil
+             :family "Consolas" ;; font
+             ;:face "Ricty"
+             :height 140)    ;; font size
+
+;;; 日本語
+
+
 
 ;;;;;;;;;;;;;;;;;;;
 ;;; text Window ;;;
 ;;;;;;;;;;;;;;;;;;;
+;;; ウィンドウさいずの変更
+(setq initial-frame-alist
+      '((top . 1) (left . 1) (width . 100) (height . 55)))
+
 ;;; 半透明化
-(set-frame-parameter nil 'alpha '80)
+(set-frame-parameter nil 'alpha 80)
 
 ;;; 対応する括弧を光らせる
 (show-paren-mode t)
