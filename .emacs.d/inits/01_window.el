@@ -21,24 +21,46 @@
 ;    (setq menu-tree-coding-system 'utf-8))
 ;(require 'menu-tree nil t)
 
-;;;;;;;;;;;;;;;;;;;
-;;; font config ;;;
-;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; font config (Windows) ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(when (eq system-type 'windows-nt)
 ;;; 英語
- (set-face-attribute 'default nil
-                     ;:family "Consolas" ;; font
+  (set-face-attribute 'default nil
+                      :family "Consolas"
+                      :height 100)
+;;; 日本語
+  (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Meiryo"))
+
+;;; asciiフォントと日本語フォントの横幅を1:2にする
+  (setq face-font-rescale-alist
+        '((".*Consolas.*" . 1.0)
+          (".*Meiryo.*" . 1.2)))
+)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; font config (Linux) ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(when (eq system-type 'gnu/linux)
+;;; 英語
+  (set-face-attribute 'default nil
+                     :family "Droid Sans Mono"
                      ;:family "Menlo"
-                     :family "monaco"
-                     :height 140)    ;; font size
+                     ;:family "monaco"
+                     ;:family "asciifont"
+                     :height 130)    ;; font size
 
 ;;; 日本語
+  (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "MonoSpace"))
 
-
-
+;; asciiフォントと日本語フォントの横幅を1:2にする
+  (setq face-font-rescale-alist
+        '((".*Droid Sans Mono.*" . 1.0)
+          (".*MonoSpace.*" . 1.2)))
+)
 ;;;;;;;;;;;;;;;;;;;
 ;;; text Window ;;;
 ;;;;;;;;;;;;;;;;;;;
-;;; ウィンドウさいずの変更
+;;; ウィンドウサイズの変更
 (setq initial-frame-alist
       '((top . 1) (left . 1) (width . 100) (height . 55)))
 
