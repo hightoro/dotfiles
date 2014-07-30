@@ -9,7 +9,7 @@
 (hlinum-activate)
 
 ;; setting (linum)
-(setq linum-format "%5d") ;; フォーマット
+(setq linum-format "%5d ") ;; フォーマット
 ;(set-face-attribute 'linum nil
 ; :foreground "#800" ;; 色
 ; :height 0.9) ;; 大きさ

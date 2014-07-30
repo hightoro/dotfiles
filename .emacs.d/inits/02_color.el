@@ -1,17 +1,3 @@
-;;;;;;;;;;;;;;;;;;;;;
-;;; window coloer ;;;
-;;;;;;;;;;;;;;;;;;;;;;
-;;; 文字の色を設定
-(add-to-list 'default-frame-alist '(foreground-color . "white"))
-
-;;; 背景色を設定
-(add-to-list 'default-frame-alist '(background-color . "black"))
-
-;;; ソースファイルに色をつける
-(when (fboundp 'global-font-lock-mode)
-  (global-font-lock-mode t))
-
-
 ;;;;;;;;;;;;;;;;;;;
 ;;; color theme ;;;
 ;;;;;;;;;;;;;;;;;;;
@@ -46,4 +32,12 @@
 ;(load-theme 'tsdh-dark t)
 
 (load-theme 'nzenburn t)
+
+
+;;;;;;;;;;;;;;;;;;;
+;;; source file ;;;
+;;;;;;;;;;;;;;;;;;;
+;;; ソースファイルに色をつける
+(when (fboundp 'global-font-lock-mode)
+  (global-font-lock-mode t))
 

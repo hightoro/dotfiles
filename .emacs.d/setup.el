@@ -33,6 +33,9 @@
    ;; anything/helm
    helm
 
+   ;; search/grep
+   anzu
+
    ;; undo
    undo-tree undohist
 
@@ -40,10 +43,7 @@
    quickrun
 
    ;; snippet
-   yasnippet
-
-   ;; other
-   anzu hlinum volatile-highlights yascroll
+   yasnippe
 
    ;; powerline
    powerline
@@ -56,6 +56,9 @@
 
    ;; elscreen
    elscreen
+
+   ;; highlight
+   hlinum volatile-highlights yascroll
 
    ;; theme
    nzenburn-theme

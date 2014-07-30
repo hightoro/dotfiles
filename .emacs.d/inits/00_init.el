@@ -4,42 +4,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; enveroment ( font ) ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Windowsで英数と日本語にMeiryoを指定
-;; Linuxで英数と日本語にRictyを指定
-;(let ((ws window-system))
-;  (cond ((eq ws 'w32)
-;	 (set-face-attribute 'default nil
-;			     :family "Meiryo" ;; 英数
-;			     :height 100)
-;	 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Meiryo"))) ;; 日本語
-;	((eq ws 'ns)
-;	 (set-face-attribute 'default nil
-;			     :family "Ricty" ;; 英数
-;			     :height 140)
-;	 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))))) ;; 日本語
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; enveroment ( locale ) ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Localeに合わせた環境の設定(Language)
 (set-locale-environment nil)
-
-
-;;;;;;;;;;;;;;;
-;;; Tab Key ;;;
-;;;;;;;;;;;;;;;
-;; タブをスペースで扱う
-(setq-default indent-tabs-mode nil)    ;; tab -> space
-
-;; タブ幅
-(custom-set-variables '(tab-width 4))
-
-
 
 ;;;;;;;;;;;;;;;;;;;;
 ;;; Resent Files ;;;
@@ -60,14 +29,11 @@
 (setq history-length 3000)
 
 
-
 ;;;;;;;;;;;;;;;;;
 ;;; clipboard ;;;
 ;;;;;;;;;;;;;;;;;
 ;;; クリップボードの共有
 (setq x-select-enable-clipborad t)
-
-
 
 
 ;;;;;;;;;;;;;;;
@@ -93,6 +59,10 @@
 
 ;;; 自動スペルチェック
 (setq-default flyspell-mode t) (setq ispell-dictionary "american")
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 ;;; タブ化
 ;; http://www.emacswiki.org/emacs/tabbar.el
