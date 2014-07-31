@@ -19,34 +19,15 @@
    ;; init
    init-loader
 
-   ;; auto-complete
-   auto-complete fuzzy popup pos-tip auto-complete-clang-async
+   ;; theme
+   nzenburn-theme
 
-   ;; popwin + direx
-   popwin direx
+   ;;;;;;;;;;;;;;;;
 
    ;; buffer utils
    ;buffer-move
 
-   ;; flymake
-   flycheck flycheck-pos-tip ;flymake-jslint
-
-   ;; anything/helm
-   helm
-
-   ;; search/grep
-   anzu
-
-   ;; undo
-   undo-tree undohist
-
-   ;; quick-run
-   quickrun
-
-   ;; snippet
-   yasnippe
-
-  ;; elscreen
+   ;; elscreen
    elscreen
 
    ;; powerline
@@ -61,17 +42,52 @@
    ;; paren
    smartparens
 
+   ;; highlight
+   hlinum volatile-highlights
+
+   ;;;;;;;;;;;;;;;;
+
+   ;; anything/helm
+   helm
+
+   ;; search/grep
+   anzu
+
+   ;; smartrep
+   smartrep
+
+   ;; expand-region
+   expand-region
+
+   ;; undo
+   undo-tree undohist
+
+   ;; popwin + direx
+   popwin direx
+
+   ;;;;;;;;;;;;;;;;
+
    ;; git
-   magit git-gutter-fringe
+   magit git-gutter git-gutter-fringe
+
+   ;;;;;;;;;;;;;;;;
+
+  ;; auto-complete
+   auto-complete fuzzy popup pos-tip auto-complete-clang-async
+
+   ;; snippet
+   yasnippe
+
+   ;; flymake
+   flycheck flycheck-pos-tip ;flymake-jslint
 
    ;; folding
    fold-dwim
 
-   ;; highlight
-   hlinum volatile-highlights
+   ;; quick-run
+   quickrun
 
-   ;; theme
-   nzenburn-theme
+   ;;;;;;;;;;;;;;;;
 
    ;; C/C++
    c-eldoc

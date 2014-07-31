@@ -31,7 +31,6 @@
 ;(setq load-path (append '("~/.emacs.d/elisp/") load-path))
 ;(normal-top-level-add-subdirs-to-load-path))
 
-
 ;;;;;;;;;;;;;;;
 ;;; package ;;;
 ;;;;;;;;;;;;;;;
@@ -42,7 +41,6 @@
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/")) ;; Marmaladeを追加
 ;; パッケージの初期化
 (package-initialize)
-
 
 ;;;;;;;;;;;;;;;;;;;
 ;;; init-loader ;;;

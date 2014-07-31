@@ -20,7 +20,10 @@
 ;(set-face-background 'hl-line "SpringGreen3")
 ;(set-face-background 'hl-line "MidnightBlue")
 (set-face-background 'hl-line "DarkSlateGrey")
+
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Multiple-Cursor ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;
+(require 'multiple-cursors)
+
 
