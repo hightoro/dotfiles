@@ -31,6 +31,10 @@
 ;;; 背景色を設定
 (add-to-list 'default-frame-alist '(background-color . "black"))
 
+;;; ソースファイルに色をつける
+(when (fboundp 'global-font-lock-mode)
+  (global-font-lock-mode t))
+
 ;;; 半透明化
 (set-frame-parameter nil 'alpha 90)
 
@@ -45,11 +49,9 @@
 ;;;;;;;;;;;;;;;;;
 ;;; Mode line ;;;
 ;;;;;;;;;;;;;;;;;
-;;; モードラインに行番号表示
-(line-number-mode t)
-
-;;; モードラインに列番号表示
-(column-number-mode t)
+;;; モードラインに番号表示
+(line-number-mode t)       ;;行番号表示
+(column-number-mode t)     ;;列番号表示
 
 
 ;;;;;;;;;;;;;;
@@ -57,24 +59,7 @@
 ;;;;;;;;;;;;;;
 ;; カーソル
 (set-cursor-color "white")        ;;カーソルの色
-(setq blink-cursor-interval 0.5)  ;;カーソルの点滅間隔
-(setq blink-cursor-delay 1.0)     ;;カーソルの点滅開始される放置時間
 (blink-cursor-mode 1)             ;;カーソルの点滅on
-
-;; カーソル行
-(global-hl-line-mode t)           ;;カーソル行のハイライトon
-(set-face-background 'hl-line "navy") ;;カーソル行の色
-
-
-;;;;;;;;;;;;;
-;;; Paren ;;;
-;;;;;;;;;;;;;
-;;; 対応する括弧を光らせる
-(show-paren-mode t)
-
-;;; ウィンドウ内に収まらないときだけ括弧内も光らせる。
-(setq show-paren-style 'mixed)
-
 
 ;;;;;;;;;;;;;;;;;;;
 ;;; Space & Tab ;;;
