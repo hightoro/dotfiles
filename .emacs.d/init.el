@@ -14,11 +14,17 @@
 
 ;;; load-pathに追加するフォルダ(上記関数を使用)
 ;; 2つ以上フォルダを指定する場合の引数 => (add-to-load-path "elisp" "xxx" "xxx")
+(when (>= emacs-major-version 24)
 (add-to-load-path
-		;"~/local/share/emacs/24.3/"
-		"~/.emacs.d/"
-		"~/.emacs.d/elisp/"
-		"~/.emacs.d/elpa/")
+		;"~/.emacs.d/"
+		"elisp"
+		"elpa")
+)
+(when (<= emacs-major-version 23)
+(add-to-load-path
+		"elisp"
+		"emacs23")
+)
 
 ;;; load-pathに追加するフォルダ(通常手法)
 ;(setq load-path (append '("~/.emacs.d/") load-path))
