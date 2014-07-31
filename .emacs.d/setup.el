@@ -8,6 +8,7 @@
 (require 'package)
 (setq package-user-dir (concat user-emacs-directory "elpa"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/")) 
 (package-initialize)
 
 ;; パッケージ情報の更新
@@ -25,7 +26,7 @@
    popwin direx
 
    ;; buffer utils
-   ;yascroll buffer-move
+   ;buffer-move
 
    ;; flymake
    flycheck flycheck-pos-tip ;flymake-jslint
@@ -45,32 +46,39 @@
    ;; snippet
    yasnippe
 
+  ;; elscreen
+   elscreen
+
    ;; powerline
    powerline
 
+   ;; scroll
+   yascroll
+
+   ;; cursor
+   multiple-cursors
+
+   ;; paren
+   smartparens
+
    ;; git
-   magit git-gutter
+   magit git-gutter-fringe
 
    ;; folding
    fold-dwim
 
-   ;; elscreen
-   elscreen
-
    ;; highlight
-   hlinum volatile-highlights yascroll
+   hlinum volatile-highlights
 
    ;; theme
    nzenburn-theme
 
    ;; C/C++
-   ;auto-complete-clang-async
    c-eldoc
 
    ;;;; go go-mode
 
    ;;;; python jedi
-
 
 ))
 
@@ -78,6 +86,4 @@
 (dolist (package my/favorite-packages)
   (unless (package-installed-p package)
     (package-install package)))
-
-
 
