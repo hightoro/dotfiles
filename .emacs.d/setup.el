@@ -76,7 +76,7 @@
    auto-complete fuzzy popup pos-tip auto-complete-clang-async
 
    ;; snippet
-   yasnippe
+   yasnippet
 
    ;; flymake
    flycheck flycheck-pos-tip ;flymake-jslint
