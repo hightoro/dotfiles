@@ -1,4 +1,6 @@
-source ${HOME}/.zsh.d/zshenv
+export ZDOTDIR=$HOME/.zsh.d
+
+#source ${HOME}/.zsh.d/zshenv
 
 # [ PATH ]
 #export PATH=$HOME/local/bin:$PATH
