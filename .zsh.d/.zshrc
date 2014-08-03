@@ -288,7 +288,7 @@ setopt pushd_to_home
 setopt pushd_ignore_dups
 #cd後自動でls
 function chpwd() { ls -v -F --color=auto }
- 
+
 ##########################
 ### [ Expend History ] ###
 ##########################
