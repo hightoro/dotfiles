@@ -20,7 +20,7 @@
    init-loader
 
    ;; theme
-   nzenburn-theme
+   nzenburn-theme solarized-theme
 
    ;;;;;;;;;;;;;;;;
 
@@ -28,7 +28,10 @@
    ;buffer-move
 
    ;; elscreen
-   elscreen
+   ;elscreen
+
+   ;; tabbar
+   tabbar
 
    ;; powerline
    powerline

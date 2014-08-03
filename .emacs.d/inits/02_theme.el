@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;
 ;;; color theme ;;;
 ;;;;;;;;;;;;;;;;;;;
-;;; カラーテーマは非推奨 (Emacs24から)
+;;; カラーテーマは非推奨 (mEacs24から)
 ;;; テーマフレームワークを使う　
 
 ;;; カラーテーマを使用する
@@ -31,8 +31,8 @@
 ;(load-theme 'foobar t)
 ;(load-theme 'tsdh-dark t)
 
+;(load-theme 'solarized t)
 (load-theme 'nzenburn t)
-
 
 ;;;;;;;;;;;;;;;;;;;
 ;;; source file ;;;
