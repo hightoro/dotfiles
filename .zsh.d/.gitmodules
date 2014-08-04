@@ -1,0 +1,6 @@
+[submodule ".zsh_plugin/zsh_plugin/zsh-syntax-highlight"]
+	path = .zsh_plugin/zsh_plugin/zsh-syntax-highlight
+	url = github:zsh-users/zsh-syntax-highlighting
+[submodule ".zsh_plugin/zsh-syntax-highlight"]
+	path = .zsh_plugin/zsh-syntax-highlight
+	url = github:zsh-users/zsh-syntax-highlighting

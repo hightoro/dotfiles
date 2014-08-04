@@ -450,8 +450,8 @@ alias xcollar='showrgb'
 #================================
 # source zsh-syntax-highlighting 
 #================================
-if [ -f ~/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
- source ~/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+ source  ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 #================================
@@ -471,10 +471,9 @@ fi
 #---[ tmux ]---#
 if [ -z $TMUX ]; then
   if $(tmux has-session); then
-    tmux attach
-    #tmux
+    tmux -2 attach
   else
-    #tmux
+    tmux -2
   fi
 fi
 
