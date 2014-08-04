@@ -102,5 +102,9 @@ c_include=(
 
 
 
+if [ -f ${ZDOTDIR}/.zsh_local ]; then
+    source ${ZDOTDIR}/.zsh_local
+fi
+
 
 ### end of file

@@ -467,9 +467,6 @@ fi
 #================================
 
 
-################
-## Read zsh_disp ##
-################
 
 #---[ tmux ]---#
 if [ -z $TMUX ]; then
@@ -481,12 +478,17 @@ if [ -z $TMUX ]; then
   fi
 fi
 
-echo "read ZDOTDIR/.zsh_disp"
+################
+## Read zsh_disp ##
+################
 if [ -f ${ZDOTDIR}/.zsh_disp ]; then
-    . ${ZDOTDIR}/.zsh_disp
+    echo "read ZDOTDIR/.zsh_disp"
+    source  ${ZDOTDIR}/.zsh_disp
 fi
 
+echo "load complete!"
 ### end of file
+
 
 #update_prompt()
 #{
