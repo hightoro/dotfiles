@@ -1,30 +1,32 @@
 #! zsh
 
-#set   ZSHDIR=${HOME}/.zsh.d
-#source ${HOME}/.zshenv
-
 ################
 ### [ echo ] ###
 ################
-#echo "read ZDOTDIR/zshrc"
+echo "read ZDOTDIR/.zshrc"
+
+####################
+### [ resource ] ###
+####################
 function resource {
- source ${HOME}/.zshrc
- source ${ZDOTDIR}/zshrc
+    source ${HOME}/.zshenv
+    source ${ZDOTDI}/zshrc
 }
 
 ###################
 ### [ Display ] ###
 ###################
 if [ -x $DISPLAY ]; then
- export DISPLAY=localhost:10.0
+    export DISPLAY=localhost:10.0
 fi
 #if [ -n $DISPLAY ]; then
 # export DISPLAY=localhost:0.0
 #fi
 function disp {
- export DISPLAY=localhost:$1.0
- echo "export DISPLAY=localhost:$1.0" >> ${HOME}/.zshrc
+    export DISPLAY=localhost:$1.0
+    echo "export DISPLAY=localhost:$1.0" > ${ZDOTDIR}/.zsh_disp
 }
+alias x='xauth list'
 
 #########################
 ### [ Expend Prompt ] ###
@@ -414,7 +416,7 @@ alias pd="pushd"
 alias po="popd"
 alias color='perl ~/.zsh.d/color.pl'
 alias g++0x='g++ -std=c++0x -Wall -Wextra'
-
+alias g++11='g++ -std=c++11 -Wall -Wextra'
 
 #---[ option ]--#
 alias -g G='| grep '
@@ -445,13 +447,44 @@ alias xg='xterm -sb -bg YellowGreen -fg black &'
 alias xcollar='showrgb'
 
 
-#=============================
+#================================
 # source zsh-syntax-highlighting 
-#============================= 
+#================================
 if [ -f ~/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
  source ~/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+#================================
+# source $HOME/.rbenv init -
+#================================
+#if [ -f ~/.rbenv/completions/rbenv.zsh ]; then
+# eval "$(rbenv init -)"
+# source ~/.rbenv/completions/rbenv.zsh
+#fi
+
+#================================
+# source $HOME/.rvm/scripts/rvm
+#================================
+
+
+################
+## Read zsh_disp ##
+################
+
+#---[ tmux ]---#
+if [ -z $TMUX ]; then
+  if $(tmux has-session); then
+    tmux attach
+    #tmux
+  else
+    #tmux
+  fi
+fi
+
+echo "read ZDOTDIR/.zsh_disp"
+if [ -f ${ZDOTDIR}/.zsh_disp ]; then
+    . ${ZDOTDIR}/.zsh_disp
+fi
 
 ### end of file
 
