@@ -118,21 +118,48 @@ case ${UID} in
     SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
 
     ## rootユーザー且つリモート接続の場合
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
       PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
     ;;
 *)
     ## 一般ユーザの場合
-    PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${WHITE}%m%u${DEFAULT}]$ ${RESET}"
+    PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${WHITE}%m%u${DEFAULT}]%(?.$.%F{red}$%f) ${RESET}"
     PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
     RPROMPT="[%B${CYAN}%~${WHITE}%b]${RESET}"
     SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
 
     ## 一般ユーザの且つリモート接続の場合
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-      PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${BLUE}%m%u${DEFAULT}]$ ${RESET}"
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+      PROMPT="%B${CYAN}%n${DEFAULT}%b@%U${BLUE}%m%u${DEFAULT}]%(?.$.%F{red}$%f) ${RESET}"
     ;;
 esac
+
+
+#
+#case ${UID} in
+#0)
+#    ## rootユーザの場合
+#    PROMPT="%B%U%${MAGENTA}%n${DEFAULT}%u%b@%U${WHITE}%m%u${RED}]# ${RESET} "
+#    PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
+#    RPROMPT="%{$fg_bold[white]%}[%{$reset_color%}%{$fg[cyan]%}%~%{$reset_color%}%{$fg_bold[white]%}]%{$reset_color%}"
+#    SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
+
+    ## rootユーザー且つリモート接続の場合
+#    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+#      PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+#    ;;
+#*)
+    ## 一般ユーザの場合
+#    PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${WHITE}%m%u${DEFAULT}]%(?.$.%F{red}$%f) ${RESET}"
+#    PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
+#    RPROMPT="[%B${CYAN}%~${WHITE}%b]${RESET}"
+#    SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
+
+    ## 一般ユーザの且つリモート接続の場合
+#    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+#      PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${BLUE}%m%u${DEFAULT}]$ ${RESET}"
+#    ;;
+#esac
 
 
 ## (First) ##
