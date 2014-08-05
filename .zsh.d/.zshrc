@@ -10,7 +10,7 @@ echo "read ZDOTDIR/.zshrc"
 ####################
 function resource {
     source ${HOME}/.zshenv
-    source ${ZDOTDI}/zshrc
+    source ${ZDOTDI}/.zshrc
 }
 
 ###################
@@ -451,7 +451,8 @@ alias xcollar='showrgb'
 # source zsh-syntax-highlighting 
 #================================
 if [ -f ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
- source  ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source  ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source  ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 #================================
