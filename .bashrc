@@ -60,6 +60,6 @@ if [ -z $TMUX ]; then
   if $(tmux has-session); then
     tmux -2 attach
   else
-    tmux
+    tmux -2
   fi
 fi
