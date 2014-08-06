@@ -65,3 +65,16 @@
 ;;; 自動スペルチェック
 (setq-default flyspell-mode t) (setq ispell-dictionary "american")
 
+
+
+
+
+;;; GUI
+;(if (eq window-system 'ns)
+;  (progn
+;
+;    ; ここにGUIアプリとして起動したときの設定
+;    (require 'server)
+;    (unless (server-running-p) (server-start)) ; ← こいつで server 起動
+;
+;    ))

@@ -21,18 +21,20 @@
 (when (eq system-type 'gnu/linux)
 ;;; 英語
   (set-face-attribute 'default nil
-                     :family "Droid Sans Mono"
+                     ;:family "Droid Sans Mono"
+                     :family "inconsolata"
                      ;:family "Menlo"
                      ;:family "monaco"
                      ;:family "asciifont"
-                     :height 130)    ;; font size
+                     :height 140)    ;; font size
 
 ;;; 日本語
-  (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "MonoSpace"))
+;  (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "MonoSpace"))
 
 ;; asciiフォントと日本語フォントの横幅を1:2にする
-  (setq face-font-rescale-alist
-        '((".*Droid Sans Mono.*" . 1.0)
-          (".*MonoSpace.*" . 1.2)))
+;  (setq face-font-rescale-alist
+;        '((".*inconsolata.*" . 1.0)
+;        '((".*Droid Sans Mono.*" . 1.0)
+;          (".*MonoSpace.*" . 1.2)))
 )
-
+;;;

@@ -23,7 +23,7 @@
 ;;;;;;;;;;;;;;;;;;;
 ;;; ウィンドウサイズの変更
 (setq initial-frame-alist
-      '((top . 1) (left . 1) (width . 100) (height . 55)))
+      '((top . 1) (left . 1) (width . 120) (height . 55)))
 
 ;;; 文字の色を設定
 (add-to-list 'default-frame-alist '(foreground-color . "white"))
