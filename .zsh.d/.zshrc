@@ -10,7 +10,8 @@ echo "read ZDOTDIR/.zshrc"
 ####################
 function resource {
     source ${HOME}/.zshenv
-    source ${ZDOTDI}/.zshrc
+    source ${ZDOTDIR}/.zshenv
+    source ${ZDOTDIR}/.zshrc
 }
 
 ###################
