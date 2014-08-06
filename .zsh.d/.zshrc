@@ -1,5 +1,4 @@
 #! zsh
-
 ################
 ### [ echo ] ###
 ################
@@ -396,25 +395,6 @@ setopt numeric_glob_sort
 ## 誤字の簡易訂正
 setopt CORRECT_ALL
 
-####################
-### [ Set Pager] ###
-####################
-## lvを優先する。lvがなかったらlessを使う。
-if type lv > /dev/null 2>&1; then
-    export PAGER="lv"
-else
-    export PAGER="less"
-fi
-
-## -c: ANSIエスケープシーケンスの色付けなどを有効にする。
-## -l: 1行が長くと折り返されていても1行として扱う。
-##     （コピーしたときに余計な改行を入れない。）
-if [ "$PAGER" = "lv" ]; then
-    export LV="-c -l"
-else
-    alias  lv="$PAGER"
-fi
-
 ########################
 ### [ Other Option ] ###
 ########################
@@ -480,7 +460,6 @@ alias xcollar='showrgb'
 #================================
 if [ -f ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source  ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source  ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 #================================
@@ -496,8 +475,9 @@ fi
 #================================
 
 
-
-#---[ tmux ]---#
+#####################
+### [ Set tmux ] ###
+#####################
 if [ -z $TMUX ]; then
   if $(tmux has-session); then
     tmux -2 attach
@@ -506,9 +486,9 @@ if [ -z $TMUX ]; then
   fi
 fi
 
-################
+###################
 ## Read zsh_disp ##
-################
+###################
 if [ -f ${ZDOTDIR}/.zsh_disp ]; then
     echo "read ZDOTDIR/.zsh_disp"
     source  ${ZDOTDIR}/.zsh_disp
