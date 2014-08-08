@@ -1,3 +1,9 @@
 [submodule ".zsh_plugin/zsh-syntax-highlighting"]
 	path = .zsh_plugin/zsh-syntax-highlighting
 	url = github:zsh-users/zsh-syntax-highlighting
+[submodule ".zsh_plugin/dircolors-solarized"]
+	path = .zsh_plugin/dircolors-solarized
+	url = github:seebi/dircolors-solarized
+[submodule ".zsh_plugin/zsh-completions"]
+	path = .zsh_plugin/zsh-completions
+	url = github:zsh-users/zsh-completions

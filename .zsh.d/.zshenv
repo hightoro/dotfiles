@@ -2,23 +2,44 @@
 ################
 ### [ echo ] ###
 ################
+if [[ -o login ]] ; then
+  echo "login shell"
+else
+  echo "_no_ login shell"
+fi
+
 echo "read ZDOTDIR/.zshenv"
 
 ################################################################
 #
-#  ## [ zsh起動時に設定ファイルが読まれる順番 ]
+#  ------------------------------------------
+#  // zsh起動時に設定ファイルが読まれる順番 //
+#  ------------------------------------------
+#
+#  ## [ ログイン時 ] ##
 #  1: /etc/zshenv
 #  2: ~/.zshenv
-#  3: /etc/zprofile もしログインシェルなら
-#  4: ~/.zprofile もしログインシェルなら
-#  5: /etc/zshrc もし対話的シェルなら
-#  6: ~/.zshrc もし対話的シェルなら
-#  7: /etc/zlogin もしログインシェルなら
-#  8: ~/.zlogin もしログインシェルなら
+#  3: /etc/zprofile
+#  4: ~/.zprofile
+#  5: /etc/zshrc
+#  6: ~/.zshrc
+#  7: /etc/zlogin
+#  8: ~/.zlogin
+#
+#  ## [ インタラクティブシェル実行時 ] ##
+#  1: /etc/zshenv
+#  2: ~/.zshenv
+#  3: /etc/zshrc
+#  4: ~/.zshrc
+#
+#  ## [ シェルスクリプト実行の場合 ] ##
+#  1: /etc/zshenv
+#  2: ~/.zshenv
 #
 #  ## [ ログアウト時 ] ##
 #  1: ~/.zlogout
 #  2: /etc/zlogout
+#
 #
 ################################################################
 
@@ -36,6 +57,7 @@ typeset -U path
 ###############################################################
 #
 #       (N-/) :  存在しないディレクトリは登録しない。
+#
 #   パス(...) :  ...という条件にマッチするパスのみ残す。
 #          N  :  NULL_GLOBオプションを設定。
 #                globがマッチしなかったり存在しないパスを無視する。
@@ -44,11 +66,19 @@ typeset -U path
 #
 ###############################################################
 path=(
-    /bin(N-/)
-    /usr/bin(N-/)
-    /usr/local/bin(N-/)
-    $HOME/local/bin(N-/))
+    ## ！PATHは先頭のものほど優先される！
 
+    # my local path
+    $HOME/local/bin(N-/)
+
+    # system path
+    /usr/local/bin(N-/)
+    /usr/bin(N-/)
+    /bin(N-/)
+
+    # system default
+    $path
+)
 
 #########################
 ### [ Set Sudo-Path ] ###
@@ -97,13 +127,18 @@ fi
 ## lv のデフォルトオプション
 if [ "$PAGER" = "lv" ]; then
     export LV="-c -l"
+    function lvc() { if [ -f $1 ]; then less $1 | lv -c; fi;  }
+    alias lv='lvc'
 else
     ## lvがなくてもlvでページャーを起動する。
     alias lv="$PAGER"
 fi
 
 ## less のデフォルトオプション
-export LESS='--max-back-scroll=1000 --ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS'
+export LESS='-SR --max-back-scroll=1000 --ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS'
+if [ -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
+    export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
+fi
 
 
 #####################
@@ -174,8 +209,7 @@ ld_library=(
     /usr/lib64(N-/)
     /usr/lib(N-/)
     /lib64(N-/)
-    /lib(N-/)
-)
+    /lib(N-/))
 #export LD_LIBRARY_PATH=/lib:$LD_LIBRARY_PATH:
 #export LD_LIBRARY_PATH=/lib64:$LD_LIBRARY_PATH
 #export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
@@ -184,6 +218,7 @@ ld_library=(
 #export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
 #export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 #export LD_LIBRARY_PATH=$HOME/local/lib64:$LD_LIBRARY_PATH
+
 
 ## LD_RUN_PATH
 ld_run=(
@@ -194,25 +229,24 @@ ld_run=(
     /usr/lib64(N-/)
     /usr/lib(N-/)
     /lib64(N-/)
-    /lib(N-/)
-)
+    /lib(N-/))
+
 
 ## C++ (CPLUS_INCLUDE_PATH) ##
 cplus_include=(
     $HOME/local/include(N-/)
     /usr/local/include(N-/)
-    /usr/include(N-/)
-)
+    /usr/include(N-/))
 #export CPLUS_INCLUDE_PATH=/usr/include:$CPLUS_INCLUDE_PATH
 #export CPULS_INCLUDE_PATH=/usr/local/include:$CPLUS_INCLUDE_PATH
 #export CPLUS_INCLUDE_PATH=$HOME/local/include:$CPLUS_INCLUDE_PATH
+
 
 ## C (C_INCLUDE_PATH) ##
 c_include=(
     $HOME/local/include(N-/)
     /usr/local/include(N-/)
-    /usr/include(N-/)
-)
+    /usr/include(N-/))
 #export C_INCLUDE_PATH=/usr/include/:$C_INCLUDE_PATH
 #export C_INCLUDE_PATH=/usr/local/include:$C_INCLUDE_PATH
 #export C_INCLUDE_PATH=$HOME/local/include:$C_INCLUDE_PATH
@@ -223,12 +257,9 @@ c_include=(
 
 ## Python ##
 
-###################
-### [ Set Lib ] ###
-###################
-
-
-
+##################
+### [ Source ] ###
+##################
 if [ -f ${ZDOTDIR}/.zsh_local ]; then
     source ${ZDOTDIR}/.zsh_local
 fi
