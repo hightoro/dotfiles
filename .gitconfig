@@ -2,7 +2,7 @@
 	email = ayanokouji11@gmail.com
 	name = hightoro
 [core]
-	editor = emacs
+	editor = vim
 	excludesfile = ~/.gitignore
 [color]
 	ui = true
