@@ -80,7 +80,7 @@
 
 ;; タブに表示させるバッファの設定
 (defvar my-tabbar-displayed-buffers
- '("scratch*" "*Messages*" "*Backtrace*" "*Colors*" "*Faces*")
+ '("scratch*" "*Messages*" "*Backtrace*" "*Colors*" "*Faces*" "*shell*" "*terminal*" "*eshell*")
   "*Regexps matches buffer names always included tabs.")
 
 (defun my-tabbar-buffer-list ()
@@ -104,12 +104,14 @@ are always included."
       (cons cur-buf tabs))))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 
-;; key-bind
+;; key-bind (like firefox)
 (global-set-key (kbd "<C-tab>") 'tabbar-forward-tab)
 (global-set-key (kbd "<C-S-tab>") 'tabbar-backward-tab)
 (global-set-key (kbd "<C-S-iso-lefttab>") 'tabbar-backward-tab)
 
-
+;; key-bind (like chrome)
+;(global-set-key (kbd "<S-M-right>") 'tabbar-forward-tab)
+;(global-set-key (kbd "<S-M-left>") 'tabbar-backward-tab)
 
 
 ;(defun my-tabbar-buffer-list ()
