@@ -1,6 +1,25 @@
-# echo
-echo "read ~/.zshenv"
+########
+## [ echo ] ##
+########
+if [[ $ZDOTDIR != $HOME/.zsh.d ]]; then
 
-# soruce
-export ZDOTDIR=$HOME/.zsh.d
-#source ${ZDOTDIR}/.zshenv
+    if [[ -o login ]] ; then
+        echo "login shell"
+    else
+        echo "_no_ login shell"
+    fi
+    #echo "read ~/.zshenv"
+
+    # soruce
+    export ZDOTDIR=$HOME/.zsh.d
+    #source ${ZDOTDIR}/.zshenv
+
+    autoload -Uz is-at-least
+    if is-at-least 5.0.2; then
+        ##  auto load $ZDOTDIR/.zshenv
+    else
+        source $ZDOTDIR/.zshenv
+    fi
+
+fi
+
