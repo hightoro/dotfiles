@@ -5,3 +5,4 @@ backup/
 auto-save-list/
 history
 clang-complete
+ac-comphist.dat
