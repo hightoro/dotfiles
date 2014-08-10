@@ -2,12 +2,12 @@
 ################
 ### [ echo ] ###
 ################
-if [[ -o login ]] ; then
-  echo "login shell"
-else
-  echo "_no_ login shell"
-fi
-
+#if [[ -o login ]] ; then
+#  echo "login shell"
+#else
+#  echo "_no_ login shell"
+#fi
+#
 echo "read ZDOTDIR/.zshenv"
 
 ################################################################
