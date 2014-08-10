@@ -4,46 +4,12 @@
 ################
 echo "read ZDOTDIR/.zshrc"
 
-####################
-### [ resource ] ###
-####################
-function resource {
-    source ${HOME}/.zshenv
-    source ${ZDOTDIR}/.zshenv
-    source ${ZDOTDIR}/.zshrc
-}
-
-###################
-### [ Display ] ###
-###################
-if [ -x $DISPLAY ]; then
-    #export DISPLAY=localhost:10.0
-fi
-#if [ -n $DISPLAY ]; then
-# export DISPLAY=localhost:0.0
-#fi
-function disp {
-    export DISPLAY=localhost:$1.0
-    echo "export DISPLAY=localhost:$1.0" > ${ZDOTDIR}/.zsh_disp
-}
-alias x='xauth list'
-
-##################
-### [ Emacs ] ###
-##################
-function e(){
-    (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) || (echo "[$0] emacs $* &"; emacs $* &)
-}
-
-
-
 
 #########################
 ### [ Expend Prompt ] ###
 #########################
 ## color 有効
 autoload -Uz colors; colors
-
 ##########################################################
 #
 # [ 色一覧 ]
@@ -144,6 +110,9 @@ case ${UID} in
     ;;
 esac
 
+autoload -Uz is-at-least
+if is-at-least 4.3.10; then
+## Vcs-Info ##---------------------------------##
 
 ## (Git) ##
 autoload -Uz vcs_info
@@ -159,6 +128,7 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
+fi ##-----------------------------------------------##
 
 ###########################
 ### [ Expend Terminal ] ###
@@ -529,7 +499,9 @@ function e(){
     (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) || (echo "[$0] emacs $* &"; emacs $* &)
 }
 
-
+autoload -Uz is-at-least
+if is-at-least 5.0.0; then
+##[ version 5.0.0 ]##-----------------------------------------##
 ########################
 ### [ load Plugin ] ###
 ########################
@@ -541,6 +513,7 @@ if [ -f ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.z
     source  ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+fi ##-----------------------------------------##
 
 #================================
 # source $HOME/.rbenv init -
