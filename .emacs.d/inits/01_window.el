@@ -6,10 +6,10 @@
       (concat  "%b - emacs@" system-name))
 
 ;;; ツールバー非表示
-;(tool-bar-mode -1)
+(tool-bar-mode -1)
 
 ;;; メニューバーを非表示
-;(menu-bar-mode -1)
+(menu-bar-mode -1)
 
 ;;; メニューバー日本語化(http://www11.atwiki.jp/s-irie/pages/13.html)
 ;(load "~/.emacs.d/elisp/menu-tree.el")

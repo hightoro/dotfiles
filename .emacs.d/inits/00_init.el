@@ -15,6 +15,8 @@
 ;;; Localeに合わせた環境の設定(Language)
 (set-locale-environment nil)
 
+
+
 ;;;;;;;;;;;;;;;;;;;;
 ;;; Resent Files ;;;
 ;;;;;;;;;;;;;;;;;;;;
