@@ -15,7 +15,11 @@ if [[ $ZDOTDIR != $HOME/.zsh.d ]]; then
     #source ${ZDOTDIR}/.zshenv
 
     autoload -Uz is-at-least
-    if is-at-least 5.0.2; then
+    if is-at-least 5.0.5; then
+        echo ""
+        #source $ZDOTDIR/.zshenv
+    elif is-at-least 5.0.2; then
+        echo ""
         ##  auto load $ZDOTDIR/.zshenv
     else
         source $ZDOTDIR/.zshenv
