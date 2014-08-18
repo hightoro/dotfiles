@@ -3,22 +3,20 @@
 ########
 if [[ $ZDOTDIR != $HOME/.zsh.d ]]; then
 
+    # echo
     if [[ -o login ]] ; then
         echo "login shell"
     else
         echo "_no_ login shell"
     fi
-    #echo "read ~/.zshenv"
+    echo "read ~/.zshenv"
 
-    # soruce
+    # export
     export ZDOTDIR=$HOME/.zsh.d
-    #source ${ZDOTDIR}/.zshenv
 
+    # source
     autoload -Uz is-at-least
-    if is-at-least 5.0.5; then
-        echo ""
-        #source $ZDOTDIR/.zshenv
-    elif is-at-least 5.0.2; then
+    if is-at-least 5.0.2; then
         echo ""
         ##  auto load $ZDOTDIR/.zshenv
     else
