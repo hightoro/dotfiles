@@ -28,7 +28,7 @@ fi
 ####################
 ### [ Set Path ] ###
 ####################
-export PATH="$HOME/local/bin:#HOME/local/sbin:$PATH"
+#export PATH="$HOME/local/bin:$HOME/local/sbin:$PATH"
 
 ###################
 ### [ Set Man ] ###
@@ -62,7 +62,7 @@ case ${UID} in
 
     ## 一般ユーザの且つリモート接続の場合
     [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-      PS1="\[\e[01;36m\]\u\[\e[00;04;37m\]@\h\[\e[00;34m\] \w \$\[\e[00m\]"
+    PS1="\[\e[01;36m\]\u\[\e[00;04;37m\]@\h\[\e[00;34m\] \w \$\[\e[00m\]"
     ;;
 esac
 

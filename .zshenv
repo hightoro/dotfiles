@@ -26,4 +26,3 @@ if [[ $ZDOTDIR != $HOME/.zsh.d ]]; then
     fi
 
 fi
-
