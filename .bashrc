@@ -17,32 +17,18 @@ if [ -f /etc/bashrc ]; then
 	source /etc/bashrc
 fi
 
-## Source path
-#source ~/.cshrc
-
 ## Source local definitions
 if [ -f ~/.bash_local ]; then
 	source ~/.bash_local
 fi
+if [ -f ~/.bash.d/.bash_local ]; then
+	source ~/.bash.d/.bash_local
+fi
 
-####################
-### [ Set Path ] ###
-####################
-#export PATH="$HOME/local/bin:$HOME/local/sbin:$PATH"
-
-###################
-### [ Set Man ] ###
-###################
-export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
-
-#####################
-### [ Set Pager ] ###
-#####################
-
-
-
-
-
+## Display
+if [ -f ~/.bash.d/.bash_disp ]; then
+	source ~/.bash.d/.bash_disp
+fi
 
 ######################
 ### [ Set prompt ] ###
@@ -66,6 +52,7 @@ case ${UID} in
     ;;
 esac
 
+
 #####################
 ### [ Set List  ] ###
 #####################
@@ -88,36 +75,13 @@ alias mv='mv -i'
 alias p='pwd'
 alias rm='rm -i'
 
-#---[ xterm ]---#
-alias xb='xterm -sb -bg black -fg white &'
-alias xb1='xterm -sb -bg DimGray -fg white &'
-alias xb2='xterm -sb -bg gray62 -fg black &'
-alias xb3='xterm -sb -bg gray42 -fg black &'
-alias xw='xterm -sb -bg WhiteSmoke -fg black &'
-alias xw1='xterm -sb -bg OldLace -fg black &'
-alias xw2='xterm -sb -bg snow -fg black &'
-alias xw3='xterm -sb -bg FloralWhite -fg black &'
-alias xw4='xterm -sb -bg MintCream -fg black &'
-alias xw5='xterm -sb -bg lavender -fg black &'
-alias xw6='xterm -sb -bg LightPink -fg black &'
-alias xw7='xterm -sb -bg AntiqueWhite1 -fg black &'
-alias xw8='xterm -sb -bg NavajoWhite3 -fg black &'
-alias xy='xterm -sb -bg LemonChiffon -fg black &'
-alias xy1='xterm -sb -bg LightGoldenrod1 -fg black &'
-alias xy2='xterm -sb -bg moccasin -fg black &'
-alias xy3='xterm -sb -bg LightYellow -fg black &'
-alias xy4='xterm -sb -bg LightGoldenrod -fg black &'
-alias xy5='xterm -sb -bg cornsilk -fg black &'
-alias xy6='xterm -sb -bg NavajoWhite -fg black &'
-alias xg='xterm -sb -bg YellowGreen -fg black &'
-alias xcollar='showrgb'
 
 #----------------------
 #--- alias disp & x
 #----------------------
 function disp {
   export DISPLAY=localhost:$1.0
-  echo "export DISPLAY=localhost:$1.0" >> ${HOME}/.bash_local
+  echo "export DISPLAY=localhost:$1.0" >> ${HOME}/.bash.d/.bash_disp
 }
 alias x='xauth list'
 
