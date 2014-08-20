@@ -101,12 +101,12 @@ case ${UID} in
     ## 一般ユーザの場合
     PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${WHITE}%m%u${DEFAULT}]%(?.$.%F{red}$%f) ${RESET}"
     PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
-    RPROMPT="[%B${CYAN}%~${WHITE}%b]${RESET}"
+    RPROMPT="[%B${BLUE}%~${WHITE}%b]${RESET}"
     SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
 
     ## 一般ユーザの且つリモート接続の場合
     [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-      PROMPT="%B${CYAN}%n${DEFAULT}%b@%U${BLUE}%m%u${DEFAULT}]%(?.$.%F{red}$%f) ${RESET}"
+      PROMPT="%B${CYAN}%n${DEFAULT}%b@%U${WHITE}%m%u${DEFAULT}]%(?.$.%F{red}$%f) ${RESET}"
     ;;
 esac
 
@@ -493,10 +493,14 @@ function disp {
 }
 alias x='xauth list'
 #================================
-# alias disp & x
+# alias e (emacs & emacsclient)
 #================================
+#function e(){
+#    (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) || (echo "[$0] emacs $* &"; emacs $* &)
+#}
 function e(){
-    (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) || (echo "[$0] emacs $* &"; emacs $* &)
+    (echo "[$0] emacsclient -n $*"; eamcsclient -n $* ) \
+        || (echo '[$0] emacsclient -n -c -a "" $*'; emacsclient -n -c -a "" $* )
 }
 
 autoload -Uz is-at-least
