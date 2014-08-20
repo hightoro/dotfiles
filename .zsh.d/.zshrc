@@ -502,7 +502,7 @@ function e(){
     (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) \
         || (echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* )
 }
-alias emacs='e'
+alias emacs='echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* '
 
 ########################
 ### [ load Plugin ] ###
