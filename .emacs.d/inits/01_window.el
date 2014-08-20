@@ -18,25 +18,45 @@
 ;    (setq menu-tree-coding-system 'utf-8))
 ;(require 'menu-tree nil t)
 
-;;;;;;;;;;;;;;;;;;;
-;;; Text window ;;;
-;;;;;;;;;;;;;;;;;;;
-;;; ウィンドウサイズの変更
+;;;;;;;;;;;;;;;;;;;;;;;
+;;;  initial frame  ;;;
+;;;;;;;;;;;;;;;;;;;;;;;
+;;; 最初に起動したemacsのフレーム外観の設定
 (setq initial-frame-alist
-      '((top . 1) (left . 1) (width . 120) (height . 55)))
+      '( (top                  . 1      ) ;; 配置座標（上）
+         (left                 . 1      ) ;;配置座標（左）
+         (width                . 120    ) ;; フレームの幅
+         (height               . 55     ) ;; フレームの高さ
+         ;(line-spacing         . 0      ) ;; 文字間隔
+         ;(left-fringe          . 0      ) ;; 左フリンジ幅
+         ;(right-fringe         . 0      ) ;; 右フリンジ幅
+         ;(menu-bar-lines       . nil    ) ;; メニューバー
+         ;(tool-bar-lines       . nil    ) ;; ツールバー
+         ;(vertical-scroll-bars . nil    ) ;; スクロールバー
+         ;(cursor-type          . box    ) ;; カーソル種別
+         ;(foreground-color     . "white") ;; 文字の色を設定
+         ;(background-color     . "black") ;; 背景色を設定
+         (alpha                . 90     ) ;; 半透明化
+         ))
 
-;;; 文字の色を設定
-(add-to-list 'default-frame-alist '(foreground-color . "white"))
 
-;;; 背景色を設定
-(add-to-list 'default-frame-alist '(background-color . "black"))
+;;;;;;;;;;;;;;;;;;;;;
+;;; default frame ;;;
+;;;;;;;;;;;;;;;;;;;;;
+;;; make-frameなどで増やしたemacsのフレーム外観の設定
+(setq default-frame-alist
+      '( (top    . 1  )
+         (left   . 1  )
+         (width  . 120)
+         (height . 55 )
+         (alpha  . 90 ) ))
 
+;;set-frame-parameterだと反映されないようです
+
+;;;
 ;;; ソースファイルに色をつける
 (when (fboundp 'global-font-lock-mode)
   (global-font-lock-mode t))
-
-;;; 半透明化
-(set-frame-parameter nil 'alpha 90)
 
 
 ;;;;;;;;;;;;;;;;;;
