@@ -8,7 +8,8 @@
 #  echo "_no_ login shell"
 #fi
 #
-echo "read ZDOTDIR/.zshenv"
+[[ $0 =~ '^-' ]] && echo "read ZDOTDIR/.zshenv"
+[[ $- =~ 'i'  ]] && echo "read ZDOTDIR/.zshenv"
 
 ################################################################
 #

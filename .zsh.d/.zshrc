@@ -474,7 +474,7 @@ alias xcollar='showrgb'
 # alias resource
 #================================
 function resource {
-    source ${HOME}/.zshenv
+    #source ${HOME}/.zshenv
     source ${ZDOTDIR}/.zshenv
     source ${ZDOTDIR}/.zshrc
 }
@@ -499,16 +499,18 @@ alias x='xauth list'
 #    (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) || (echo "[$0] emacs $* &"; emacs $* &)
 #}
 function e(){
-    (echo "[$0] emacsclient -n $*"; eamcsclient -n $* ) \
-        || (echo '[$0] emacsclient -n -c -a "" $*'; emacsclient -n -c -a "" $* )
+    (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) \
+        || (echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* )
 }
+alias emacs='e'
 
-autoload -Uz is-at-least
-if is-at-least 5.0.0; then
-##[ version 5.0.0 ]##-----------------------------------------##
 ########################
 ### [ load Plugin ] ###
 ########################
+autoload -Uz is-at-least
+###########################################
+if is-at-least 5.0.0; then ##---------------------------------##
+###########################################
 if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
@@ -516,8 +518,10 @@ fi
 if [ -f ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source  ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+###########################################
+fi ##--------------------------------------------------------------##
+###########################################
 
-fi ##-----------------------------------------##
 
 #================================
 # source $HOME/.rbenv init -
@@ -551,7 +555,7 @@ if [ -f ${ZDOTDIR}/.zsh_disp ]; then
     source  ${ZDOTDIR}/.zsh_disp
 fi
 
-echo "load complete!"
+echo "![ load complete ]!"
 ### end of file
 
 
