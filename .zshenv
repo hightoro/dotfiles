@@ -5,9 +5,9 @@ if [[ $ZDOTDIR != $HOME/.zsh.d ]]; then
 
     # echo
     if [[ -o login ]] ; then
-        echo "login shell"
+        echo "![ login shell ]!"
     else
-        echo "_no_ login shell"
+        echo "![ _no_ login shell ]!"
     fi
     echo "read ~/.zshenv"
 
