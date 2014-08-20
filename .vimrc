@@ -9,6 +9,10 @@ let g:jellybeans_overrides = {
 "colorscheme jellybeans
 colorscheme mydark
 
+" [backspace]
+
+
+
 " [line number]
 set number
 
