@@ -6,7 +6,7 @@ set fileencoding=utf-8  " ファイルエンコード
 " [ color ]
 syntax on
 
-let g:jellybeans_overrides = {
+"let g:jellybeans_overrides = {
 \  'Todo': { 'guifg': '303030', 'guibg': 'f0f000', 'ctermfg': 'Black', 'ctermbg': 'Yellow', 'attr': 'bold' },
 \}
 
@@ -27,6 +27,10 @@ set showcmd  " コマンドを画面最下部に表示する
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
 set backspace=start,eol,indent " バックスペースキーの作用する範囲の定義
 "set backspace=eol
+let &t_ti.="e[1 q" "カーソルを調整
+let &t_SI.="e[5 q" "カーソルを調整
+let &t_EI.="e[1 q" "カーソルを調整
+let &t_te.="e[0 q" "カーソルを調整
 
 " [ view ]
 set list  " 改行 ( $ ) やタブ ( ^I ) を可視化する
