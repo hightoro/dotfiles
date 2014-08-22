@@ -1,20 +1,29 @@
-# .bash_profile
-
-# Get the aliases and functions
-if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
-fi
-
-# User specific environment and startup program
-PATH=$PATH:$HOME/bin
-
-export PATH
-unset USERNAME
+# .bashenv
+#-----------------------------------------
+################
+### [ echo ] ###
+################
+[[ $- =~ 'i' ]] && echo "read DOTBDIR/.bashenv"
 
 ####################
 ### [ Set Path ] ###
 ####################
 #export PATH="$HOME/local/bin:$HOME/local/sbin:$PATH"
+
+###################
+### [ Set Man ] ###
+###################
+export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
+
+#####################
+### [ Set Pager ] ###
+#####################
+
+
+#####################
+### [ Set Grep ] ###
+#####################
+
 
 ####################
 ### [ Set INCLUDE ] ###
@@ -32,11 +41,12 @@ unset USERNAME
 ####################
 #export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 
-###################
-### [ Set Man ] ###
-###################
-export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
+########################
+### [ Source local ] ###
+########################
+## Source local definitions
+if [ -f $DOTBDIR/.bash_local ]; then
+	source $DOTBDIR/.bash_local
+fi
 
-#####################
-### [ Set Pager ] ###
-#####################
+# end of file
