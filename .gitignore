@@ -13,6 +13,5 @@
 .bash.d/.bash_local
 
 ## vim
-.vim/bundle/
-.vim/color/
+.vim/bundle/*
 
