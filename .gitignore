@@ -13,5 +13,7 @@
 .bash.d/.bash_local
 
 ## vim
-.vim/bundle/*
-!.vim/bundle/neobundle.vim
+.vim/bundle/*/
+!.vim/bundle/neobundle.vim/
+.vim/buckup/*
+

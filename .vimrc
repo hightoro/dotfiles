@@ -3,16 +3,6 @@
 set encoding=utf8  " エンコード
 set fileencoding=utf-8  " ファイルエンコード
 
-" [ color ]
-syntax on
-
-"let g:jellybeans_overrides = {
-\  'Todo': { 'guifg': '303030', 'guibg': 'f0f000', 'ctermfg': 'Black', 'ctermbg': 'Yellow', 'attr': 'bold' },
-\}
-
-"colorscheme jellybeans
-colorscheme mydark
-
 " [ line number ]
 set number  "行番号を表示する
 set title "編集中のファイル名を表示
@@ -27,10 +17,10 @@ set showcmd  " コマンドを画面最下部に表示する
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
 set backspace=start,eol,indent " バックスペースキーの作用する範囲の定義
 "set backspace=eol
-let &t_ti.="e[1 q" "カーソルを調整
-let &t_SI.="e[5 q" "カーソルを調整
-let &t_EI.="e[1 q" "カーソルを調整
-let &t_te.="e[0 q" "カーソルを調整
+"let &t_ti.="e[1 q" "カーソルを調整
+"let &t_SI.="e[5 q" "カーソルを調整
+"let &t_EI.="e[1 q" "カーソルを調整
+"let &t_te.="e[0 q" "カーソルを調整
 
 " [ view ]
 set list  " 改行 ( $ ) やタブ ( ^I ) を可視化する
@@ -60,21 +50,19 @@ if exists('&ambiwidth')
 	set ambiwidth=double		" UTF-8の□や○でカーソル位置がずれないようにする
 endif
 
-
-
 " [ clip board ] "
 set clipboard+=unnamed
 set clipboard=unnamed
 
 " [ backup ] "
-set directory=$HOME/.vim/vimbackup
-set backupdir=$HOME/.vim/vimbackup
+set directory=$HOME/.vim/backup
+set backupdir=$HOME/.vim/backup
 
 " [ other ] "
 " スワップファイルは使わない
 set noswapfile
 " インサートモードから抜けると自動的にIMEをオフにする
-set iminsert=2
+"set iminsert=2
 " ビープ音を消す
 set vb t_vb=
 set novisualbell
@@ -93,13 +81,24 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 " gitへのアクセスプロトコルをsshに変更
 "let g:neobundle_default_git_protocol='ssh'
-"let g:neobundle#types#git#default_protocol = 'ssh'
+let g:neobundle#types#git#default_protocol = 'git'
 "let g:neobundle#default_sites = "github"
+
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " --| My Bundles here: |------------
-NeoBundle 'github:Shougo/unite.vim'
+NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'altercation/vim-colors-solarized' " solarized
+"NeoBundle 'croaker/mustang-vim'              " mustang
+"NeoBundle 'jeffreyiacono/vim-colors-wombat'  " wombat カラースキーム
+"NeoBundle 'nanotech/jellybeans.vim'          " jellybeans
+"NeoBundle 'vim-scripts/Lucius'               " lucius カラースキーム
+NeoBundle 'vim-scripts/Zenburn'              " zenburn カラースキーム
+"NeoBundle 'mrkn/mrkn256.vim'                 " mrkn256 カラースキーム
+"NeoBundle 'jpo/vim-railscasts-theme'         " railscasts カラースキーム
+"NeoBundle 'therubymug/vim-pyte'              " pyte カラースキーム
+"NeoBundle 'tomasr/molokai'                   " molokai
 "
 "
 " --| My Bundles end:  |------------
@@ -118,11 +117,18 @@ filetype plugin indent on
 " :NeoBundleClean
 
 " 自動アップデート
-NeoBundleCheck
+"NeoBundleCheck
 
 "}}}
 
 
+" [ color ]
+"syntax on
+syntax enable
+set t_Co=256
+set background=dark
 
+"colorscheme solarized
+"let g:solarized_termcolors=256
 
-
+colorschem zenburn
