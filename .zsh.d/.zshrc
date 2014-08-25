@@ -1,40 +1,18 @@
 #! zsh
-
-#set   ZSHDIR=${HOME}/.zsh.d
-#source ${HOME}/.zshenv
-
 ################
 ### [ echo ] ###
 ################
-#echo "read ZDOTDIR/zshrc"
-function resource {
- source ${HOME}/.zshrc
- source ${ZDOTDIR}/zshrc
-}
+echo "read ZDOTDIR/.zshrc"
 
-###################
-### [ Display ] ###
-###################
-if [ -x $DISPLAY ]; then
- export DISPLAY=localhost:10.0
-fi
-#if [ -n $DISPLAY ]; then
-# export DISPLAY=localhost:0.0
-#fi
-function disp {
- export DISPLAY=localhost:$1.0
- echo "export DISPLAY=localhost:$1.0" >> ${HOME}/.zshrc
-}
 
 #########################
 ### [ Expend Prompt ] ###
 #########################
 ## color 有効
 autoload -Uz colors; colors
-
 ##########################################################
 #
-# [ 色一覧 ] 
+# [ 色一覧 ]
 #   00:    なにもしない
 #   01:    太字化
 #   04:    下線
@@ -116,61 +94,41 @@ case ${UID} in
     SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
 
     ## rootユーザー且つリモート接続の場合
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
       PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
     ;;
 *)
     ## 一般ユーザの場合
-    PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${WHITE}%m%u${DEFAULT}]$ ${RESET}"
+    PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${WHITE}%m%u${DEFAULT}]%(?.$.%F{red}$%f) ${RESET}"
     PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
-    RPROMPT="[%B${CYAN}%~${WHITE}%b]${RESET}"
+    RPROMPT="[%B${BLUE}%~${WHITE}%b]${RESET}"
     SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
 
     ## 一般ユーザの且つリモート接続の場合
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-      PROMPT="%B${GREEN}%n${DEFAULT}%b@%U${BLUE}%m%u${DEFAULT}]$ ${RESET}"
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+      PROMPT="%B${CYAN}%n${DEFAULT}%b@%U${WHITE}%m%u${DEFAULT}]%(?.$.%F{red}$%f) ${RESET}"
     ;;
 esac
 
+autoload -Uz is-at-least
+if is-at-least 4.3.10; then
+## Vcs-Info ##---------------------------------##
 
-## (First) ##
-#case ${UID} in
-#0)
-#    PROMPT="%B%{[31m%}%/#%{[m%}%b "
-#    PROMPT2="%B%{[31m%}%_#%{[m%}%b "
-#    SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%{[m%}%b "
-#    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-#        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-#    ;;
-#*)
-#    PROMPT="%{[31m%}%/%%%{[m%} "
-#    PROMPT2="%{[31m%}%_%%%{[m%} "
-#    SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
-#    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-#        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-#    ;;
-#esac
+## (Git) ##
+autoload -Uz vcs_info
+# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
+setopt prompt_subst
 
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
-## (Second) ##
-#case ${UID} in
-#0)
-#    PROMPT="%{$fg_bold[green]%}%m%{$fg_bold[red]%}#%{$reset_color%} "
-#    PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
-#    RPROMPT="%{$fg_bold[white]%}[%{$reset_color%}%{$fg[cyan]%}%~%{$reset_color%}%{$fg_bold[white]%}]%{$reset_color%}"
-#    SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
-##    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-##        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-#    ;;
-#*)
-#    PROMPT="%{$fg_bold[cyan]%}%m%{$fg_bold[white]%}%%%{$reset_color%} "
-#    PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
-#    RPROMPT="%{$fg_bold[white]%}[%{$reset_color%}%{$fg[cyan]%}%~%{$reset_color%}%{$fg_bold[white]%}]%{$reset_color%}"
-#    SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
-##    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-#        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-#    ;;
-#esac
+precmd () { vcs_info }
+RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+
+fi ##-----------------------------------------------##
 
 ###########################
 ### [ Expend Terminal ] ###
@@ -183,6 +141,7 @@ kterm*|xterm)
     }
     ;;
 esac
+
 
 #########################
 ### [ Expend Window ] ###
@@ -207,9 +166,14 @@ if [ -n "$DISPLAY" ]; then
     preexec_functions=($preexec_functions update_title)
 fi
 
+
+################################
+### [ Expend List segments ] ###
+################################
 ## lsの色をcolor変更する
-#export LSCOLORS=exfxcxdxbxegedabagacad
 ##########################################################
+#
+#   [ ls --color ] option (GNU)
 #
 #   di: ディレクトリ
 #   ln: シンボリックリンク
@@ -255,14 +219,27 @@ fi
 #   49: デフォルト(背景色)
 #
 ########################################################
+# 色の設定(BSD版ls)
+export LSCOLORS=Exfxcxdxbxegedabagacad
+# 色の設定(GNU版ls)
 export LS_COLORS='di=01;31:ln=01;35:so=32:pi=33:ex=01;32:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 #export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.sh=01;32:*.csh=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:'
+if [ -f ${ZDOTDIR}/.zsh_plugin/dircolors-solarized/dircolors.ansi-universal ]; then
+    eval $(dircolors ${ZDOTDIR}/.zsh_plugin/dircolors-solarized/dircolors.ansi-universal)
+fi
+# ZLS_COLORSとは？
+export ZLS_COLORS=$LS_COLORS
+# lsコマンド時、自動で色がつく(ls -Gのようなもの？)
+export CLICOLOR=true
+
 case "${OSTYPE}" in
 freebsd*|darwin*)
   alias ls="ls -GF"
   ;;
 linux*)
   alias ls="ls -F --color"
+  alias dir="ls -F --color"
+  alias vdir="ls -F --color"
   ;;
 cygwin)
   #alias ls="ls -F --color=auto"
@@ -270,25 +247,34 @@ cygwin)
   ;;
 esac
 
+
 ###################################
 ### [ Expend Change Directory ] ###
 ###################################
 ## ディレクトリ名だけでcdする。
-setopt auto_cd
+#setopt auto_cd
 ## cdで移動してもpushdと同じようにディレクトリスタックに追加する。
 setopt auto_pushd
-## カレントディレクトリ中に指定されたディレクトリが見つからなかった場合に
-## 移動先を検索するリスト。
-cdpath=(~)
-## ディレクトリが変わったらディレクトリスタックを表示。
-chpwd_functions=($chpwd_functions dirs)
 ## pushd を引数無しで実行した時に pushd ~ とする。
 setopt pushd_to_home
 ## pushdで同じディレクトリを重複してpushしない。
 setopt pushd_ignore_dups
+## リンクへ移動するとき実際のディレクトリへ移動
+setopt chase_links
 #cd後自動でls
 function chpwd() { ls -v -F --color=auto }
- 
+
+
+#######################
+### [ Expend Jobs ] ###
+#######################
+# バックグランドのジョブのスピードを落とさない
+setopt NOBGNICE
+# ログアウトしてもバックグランドジョブを続ける
+setopt NOHUP
+
+
+
 ##########################
 ### [ Expend History ] ###
 ##########################
@@ -307,7 +293,7 @@ setopt extended_history
 setopt hist_ignore_dups
 ## スペースで始まるコマンドラインはヒストリに追加しない。
 setopt hist_ignore_space
-## ヒストリ追加時に余白削除 
+## ヒストリ追加時に余白削除
 setopt HIST_REDUCE_BLANKS
 ## すぐにヒストリファイルに追記する。
 setopt inc_append_history
@@ -315,6 +301,11 @@ setopt inc_append_history
 setopt share_history
 ## C-sでのヒストリ検索が潰されてしまうため、出力停止・開始用にC-s/C-qを使わない。
 setopt no_flow_control
+# rootは履歴を残さないようにする
+if [ $UID = 0 ]; then
+  unset HISTFILE
+  SAVEHIST=0
+fi
 
 #############################
 ### [ Expend Completion ] ###
@@ -323,11 +314,15 @@ setopt no_flow_control
 autoload -U compinit
 compinit
 
-zstyle ':completion:*' format '%B%d%b'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*:default' menu select=2
-zstyle ':completion:*:default' list-colors ""
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} r:|[._-]=*'
+## カレントディレクトリ中に指定されたディレクトリが見つからなかった場合に
+## 移動先を検索するリスト。
+cdpath=(~)
+## ディレクトリが変わったらディレクトリスタックを表示。
+chpwd_functions=($chpwd_functions dirs)
+
+##########################################################
+# zstyle ":completion:*:*:コマンド:*:タグ" #####
+##########################################################
 
 ##########################################################
 #
@@ -343,6 +338,23 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} r:|[._-]=*'
 ##########################################################
 zstyle ':completion:*' completer _oldlist _complete _match _history _ignored _approximate _prefix
 
+## format
+zstyle ':completion:*' format '%B%d%b'
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+
+zstyle ':completion:*' group-name ''
+
+## 保管候補の選択方式
+zstyle ':completion:*:default' menu select=2
+
+## 補完候補を色付きで表示
+#zstyle ':completion:*:default' list-colors ""
+#zstyle ':completion:*:default' list-colors ${LS_COLORS}
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} r:|[._-]=*'
 ## 補完候補をキャッシュする。
 zstyle ':completion:*' use-cache yes
 ## 詳細な情報を使う。
@@ -350,51 +362,64 @@ zstyle ':completion:*' verbose yes
 ## sudo時にはsudo用のパスも使う。
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 ## 色付き表示。
-zstyle ':completion:*' list-colors ''
+#zstyle ':completion:*' list-colors ''
+# manの補完をセクション番号別に表示させる
+zstyle ':completion:*:manuals' separate-sections true
+# 変数の添字を補完する
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+## カレントディレクトリに候補がない場合のみ cdpath 上のディレクトリを候補に出す
+zstyle ':completion:*:cd:*' tag-order local-directories path-directories
+## cdは親ディレクトリからカレントディレクトリを選択しないので表示させないようにする (例: cd ../<TAB>):
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+## オブジェクトファイルとか中間ファイルは補完候補にしない。でも rm では候補にする。
+zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.d' '*?.aux' '*?~' '*\#'
+# kill 候補を色付け
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
+
 
 ## カーソル位置で補完する。
 setopt complete_in_word
-## globを展開しないで候補の一覧から補完する。
-setopt glob_complete
 ## 補完時にヒストリを自動的に展開する。
 setopt hist_expand
 ## 補完候補がないときなどにビープ音を鳴らさない。
 setopt no_beep
 ## 辞書順ではなく数字順に並べる。
 setopt numeric_glob_sort
+# 補完候補一覧でファイルの種別を識別マーク表示 (訳注:ls -F の記号)
+setopt list_types
+# 補完候補リストを詰めて表示
+#setopt list_packed
+## globを展開しないで候補の一覧から補完する。
+setopt glob_complete
+## 明確なドットの指定なしで.から始まるファイルをマッチ
+setopt globdots
+## ファイル名のマッチングを強化 (`man zshexpn` の FILENAME GENERATION を参照)
+setopt extended_glob
+## コマンドラインでも # 以降をコメントと見なす
+setopt interactive_comments
+## コマンドラインの引数で --prefix=/usr などの = 以降でも補完できる
+setopt magic_equal_subst
+## alias でも(展開して)補完する
+setopt complete_aliases
 
-## 誤字の簡易訂正
-setopt CORRECT_ALL
-
-####################
-### [ Set Pager] ###
-####################
-## lvを優先する。lvがなかったらlessを使う。
-if type lv > /dev/null 2>&1; then
-    export PAGER="lv"
-else
-    export PAGER="less"
-fi
-
-## -c: ANSIエスケープシーケンスの色付けなどを有効にする。
-## -l: 1行が長くと折り返されていても1行として扱う。
-##     （コピーしたときに余計な改行を入れない。）
-if [ "$PAGER" = "lv" ]; then
-    export LV="-c -l"
-else
-    alias  lv="$PAGER"
-fi
 
 ########################
 ### [ Other Option ] ###
 ########################
+## 誤字の簡易訂正
+setopt CORRECT_ALL
 ## rm * を実行する前に確認される。
 setopt rmstar_wait
 ## ^Dでログアウトしないようにする。
 setopt ignore_eof
+## 単語の一部として扱われる文字のセットを指定する
+## ここではデフォルトのセットから / を抜いたものとする
+## こうすると、 Ctrl-W でカーソル前の1単語を削除したとき、 / までで削除が止まる
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 ## 実行したプロセスの消費時間が3秒以上かかったら
 ## 自動的に消費時間の統計情報を表示する。
 REPORTTIME=3
+
 
 #####################
 ### [ Set Alias ] ###
@@ -415,9 +440,9 @@ alias pd="pushd"
 alias po="popd"
 alias color='perl ~/.zsh.d/color.pl'
 alias g++0x='g++ -std=c++0x -Wall -Wextra'
+alias g++11='g++ -std=c++11 -Wall -Wextra'
 
-
-#---[ option ]--#
+#---[ global option ]--#
 alias -g G='| grep '
 alias -g L='| less'
 
@@ -445,16 +470,94 @@ alias xy6='xterm -sb -bg NavajoWhite -fg black &'
 alias xg='xterm -sb -bg YellowGreen -fg black &'
 alias xcollar='showrgb'
 
+#================================
+# alias resource
+#================================
+function resource {
+    #source ${HOME}/.zshenv
+    source ${ZDOTDIR}/.zshenv
+    source ${ZDOTDIR}/.zshrc
+}
+#================================
+# alias disp & x
+#================================
+#if [ -x $DISPLAY ]; then
+#    export DISPLAY=localhost:10.0
+#fi
+#if [ -n $DISPLAY ]; then
+#    export DISPLAY=localhost:0.0
+#fi
+function disp {
+    export DISPLAY=localhost:$1.0
+    echo "export DISPLAY=localhost:$1.0" > ${ZDOTDIR}/.zsh_disp
+}
+alias x='xauth list'
+#================================
+# alias e (emacs & emacsclient)
+#================================
+#function e(){
+#    (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) || (echo "[$0] emacs $* &"; emacs $* &)
+#}
+function e(){
+    (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) \
+        || (echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* )
+}
+alias emacs='echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* '
 
-#=============================================
-# source zsh-users/zsh-syntax-highlighting 
-#============================================= 
-if [ -f ~/.zsh.d/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
- source ~/.zsh.d/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+########################
+### [ load Plugin ] ###
+########################
+autoload -Uz is-at-least
+###########################################
+if is-at-least 5.0.0; then ##---------------------------------##
+###########################################
+if [ -e /usr/local/share/zsh-completions ]; then
+    fpath=(/usr/local/share/zsh-completions $fpath)
 fi
 
+if [ -f ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source  ${ZDOTDIR}/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+###########################################
+fi ##--------------------------------------------------------------##
+###########################################
 
+
+#================================
+# source $HOME/.rbenv init -
+#================================
+#if [ -f ~/.rbenv/completions/rbenv.zsh ]; then
+# eval "$(rbenv init -)"
+# source ~/.rbenv/completions/rbenv.zsh
+#fi
+
+#================================
+# source $HOME/.rvm/scripts/rvm
+#================================
+
+
+#####################
+### [ Set tmux ] ###
+#####################
+if [ -z $TMUX ]; then
+  if $(tmux has-session); then
+    tmux -2 attach
+  else
+    tmux -2
+  fi
+fi
+
+#########################
+### [ Read zsh_disp ] ###
+#########################
+if [ -f ${ZDOTDIR}/.zsh_disp ]; then
+    echo "read ZDOTDIR/.zsh_disp"
+    source  ${ZDOTDIR}/.zsh_disp
+fi
+
+echo "![ load complete ]!"
 ### end of file
+
 
 #update_prompt()
 #{
