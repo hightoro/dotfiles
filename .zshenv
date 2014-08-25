@@ -1,31 +1,27 @@
-export ZDOTDIR=$HOME/.zsh.d
+##############
+## [ echo ] ##
+##############
+if [[ $ZDOTDIR != $HOME/.zsh.d ]]; then
 
-#source ${HOME}/.zsh.d/zshenv
+    # echo
+    if [[ -o login ]] ; then
+        echo "![ login shell ]!"
+    else
+        echo "![ _no_ login shell ]!"
+    fi
+    echo "read ~/.zshenv"
 
-# [ PATH ]
-#export PATH=$HOME/local/bin:$PATH
+    # export
+    export ZDOTDIR=$HOME/.zsh.d
 
-# [ LD_LIBRARY_PATH ]
-#export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
-#export LD_RUN_PATH=$HOME/local/lib:$LD_RUN_PATH
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
-#export LD_RUN_PATH=$LD_RUN_PATH
+    # source
+    autoload -Uz is-at-least
+    if is-at-least 5.0.2; then
+        ;
+	    #echo ""
+        ##  auto load $ZDOTDIR/.zshenv
+    else
+        source $ZDOTDIR/.zshenv
+    fi
 
-# [ CPLUS_INCLUDE_PATH ]
-#export CPLUS_INCLUDE_PATH=$HOME/local/include/ncurses:$CPLUS_INCLUDE_PATH
-#export CPLUS_INCLUDE_PATH=$HOME/local/include/ncursesw:$CPLUS_INCLUDE_PATH
-
-# [ C_INCLUDE_PATH ]
-#export C_INCLUDE_PATH=$HOME/local/include/ncurses:$C_INCLUDE_PATH
-#export C_INCLUDE_PATH=$HOME/local/include/ncursesw:$C_INCLUDE_PATH
-
-# [ PYTHON2.7 ]
-#export PATH=/usr/local/python27/bin:$PATH
-#alias python='$HOME/local/bin/python3.3'
-
-# [ RUBY ]
-#export PATH=$HOME/.rbenv/bin:$PATH
-
-
-##
-#export PKG_CONFIG_PATH=$HOME/local/lib64/pkgconfig:$HOME/local/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/lib64/pkgconfig;#:$PKG_CONFIG_PATH
+fi

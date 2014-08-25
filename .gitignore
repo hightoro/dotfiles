@@ -7,3 +7,13 @@
 ## Executable
 *.exe
 *.elc
+
+## bash
+.bash.d/.bash_disp
+.bash.d/.bash_local
+
+## vim
+.vim/bundle/*/
+!.vim/bundle/neobundle.vim/
+.vim/buckup/*
+
