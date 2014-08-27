@@ -16,4 +16,4 @@
 .vim/bundle/*/
 !.vim/bundle/neobundle.vim/
 .vim/buckup/*
-
+!.vim/backup/
