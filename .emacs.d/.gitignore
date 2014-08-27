@@ -1,0 +1,8 @@
+emacs23/
+elpa/
+themes/
+backup/
+auto-save-list/
+history
+clang-complete
+ac-comphist.dat
