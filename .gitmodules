@@ -1,6 +1,12 @@
 [submodule ".vim/bundle/neobundle.vim"]
 	path = .vim/bundle/neobundle.vim
 	url = github:Shougo/neobundle.vim
-[submodule "/home/rhori/.dotfiles/.vim/bundle/neobundle.vim"]
-	path = /home/rhori/.dotfiles/.vim/bundle/neobundle.vim
-	url = github:Shougo/neobundle.vim
+[submodule ".zsh.d/.zsh_plugin/zsh-syntax-highlighting"]
+	path = .zsh.d/.zsh_plugin/zsh-syntax-highlighting
+	url = github:zsh-users/zsh-syntax-highlighting
+[submodule ".zsh.d/.zsh_plugin/dircolors-solarized"]
+	path = .zsh.d/.zsh_plugin/dircolors-solarized
+	url = github:seebi/dircolors-solarized
+[submodule ".zsh.d/.zsh_plugin/zsh-completions"]
+	path = .zsh.d/.zsh_plugin/zsh-completions
+	url = github:zsh-users/zsh-completions

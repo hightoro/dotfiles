@@ -503,8 +503,10 @@ function e(){
         || (echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* )
 }
 
-alias enw=( echo "[$0] emacsclient -t -a \"\" $*"; emacsclient -t -a "" $* )
-alias ee='emacsclient -e "(kill-emacs)"'
+alias ew='echo "[$0] emacsclient -n $*"; emacsclient -n $* '
+alias ecw='echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* '
+alias enw='echo "[$0] emacsclient -t -a \"\" $*"; emacsclient -t -a "" $* '
+alias ee='echo "[$0] emacsclient -e \"(kill-emacs)\"; "emacsclient -e "(kill-emacs)"'
 #alias emacs='echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* '
 
 ########################

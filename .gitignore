@@ -12,8 +12,26 @@
 .bash.d/.bash_disp
 .bash.d/.bash_local
 
+## emacs
+.emacs.d/emacs23/
+.emacs.d/elpa/
+.emacs.d/themes/
+.emacs.d/backup/
+.emacs.d/auto-save-list/
+.emacs.d/history
+.emacs.d/clang-complete
+.emacs.d/ac-comphist.dat
+
 ## vim
 .vim/bundle/*/
 !.vim/bundle/neobundle.vim/
-.vim/buckup/*
-!.vim/backup/
+.vim/buckup/
+
+## zsh
+.zsh.d/.zsh_history
+.zsh.d/.zsh_local
+.zsh.d/.zcompdump
+.zsh.d/.zsh_disp
+
+
+## end_of_file
