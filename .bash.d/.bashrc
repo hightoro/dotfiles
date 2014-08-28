@@ -4,13 +4,10 @@
 # User specific aliases and functions
 #
 #-----------------------------------------
-##############################
-### [ Set bash Envirment file ] ###
-##############################
-export DOTBDIR=$HOME/.bash.d
-
-if [ -f $DOTBDIR/.bashenv ]; then
-    export BASH_ENV=$DOTBDIR/.bashenv
+####################################
+### [ load bash Envirment file ] ###
+####################################
+if [ -f $BASH_ENV ]; then
     source $BASH_ENV
 fi
 
@@ -23,8 +20,8 @@ echo "read DOTBDIR/.bashrc"
 ### [ Source disp ] ###
 ########################
 ## Display
-if [ -f $DOTBDIR/.bash_disp ]; then
-	source $DOTBDIR/.bash_disp
+if [ -f $BASH_DIR/.bash_disp ]; then
+    source $BASH_DIR/.bash_disp
 fi
 
 ######################
@@ -53,7 +50,7 @@ esac
 #####################
 ### [ Set List  ] ###
 #####################
-if [ -f ~/.zsh.d/.zsh_plugin/dircolors-solarized/dircolors.ansi-universal ]; then
+if [ -f ~/.dotfiles/.zsh.d/.zsh_plugin/dircolors-solarized/dircolors.ansi-universal ]; then
     eval $(dircolors ~/.zsh.d/.zsh_plugin/dircolors-solarized/dircolors.ansi-universal)
 fi
 alias ls='ls -F --color=auto'
@@ -78,7 +75,7 @@ alias rm='rm -i'
 #----------------------
 function disp {
   export DISPLAY=localhost:$1.0
-  echo "export DISPLAY=localhost:$1.0" >> ${HOME}/.bash_local
+  echo "export DISPLAY=localhost:$1.0" >> ${BASH_DIR}/.bash_disp
 }
 alias x='xauth list'
 

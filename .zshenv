@@ -11,14 +11,13 @@ if [[ $ZDOTDIR != $HOME/.zsh.d ]]; then
     fi
     echo "read ~/.zshenv"
 
-    # export
-    export ZDOTDIR=$HOME/.zsh.d
+    # export ZSOTDIR
+    export ZDOTDIR=$HOME/.dotfiles/.zsh.d
 
     # source
     autoload -Uz is-at-least
     if is-at-least 5.0.2; then
         ;
-	    #echo ""
         ##  auto load $ZDOTDIR/.zshenv
     else
         source $ZDOTDIR/.zshenv

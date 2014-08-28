@@ -3,7 +3,7 @@
 ################
 ### [ echo ] ###
 ################
-[[ $- =~ 'i' ]] && echo "read DOTBDIR/.bashenv"
+[[ $- =~ 'i' ]] && echo "read BASH_DIR/.bashenv"
 
 ####################
 ### [ Set Path ] ###
@@ -45,8 +45,8 @@ export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
 ### [ Source local ] ###
 ########################
 ## Source local definitions
-if [ -f $DOTBDIR/.bash_local ]; then
-	source $DOTBDIR/.bash_local
+if [ -f $BASH_DIR/.bash_local ]; then
+    source $BASH_DIR/.bash_local
 fi
 
 # end of file
