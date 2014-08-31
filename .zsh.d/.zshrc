@@ -1,4 +1,5 @@
-#! zsh
+#!/usr/bin/zsh
+
 ################
 ### [ echo ] ###
 ################
@@ -498,17 +499,31 @@ alias x='xauth list'
 #function e(){
 #    (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) || (echo "[$0] emacs $* &"; emacs $* &)
 #}
-function e(){
-    (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) \
-        || (echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* )
-}
+#function e(){
+#    (echo "[$0] emacsclient -n $*"; emacsclient -n $* ) \
+#        || (echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* )
+#}
 
-alias ew='echo "[$0] emacsclient -n $*"; emacsclient -n $* '
+alias  ew='echo "[$0] emacsclient -n $*"; emacsclient -n $* '
 alias ecw='echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* '
 alias enw='echo "[$0] emacsclient -t -a \"\" $*"; emacsclient -t -a "" $* '
-alias ee='echo "[$0] emacsclient -e \"(kill-emacs)\"; "emacsclient -e "(kill-emacs)"'
+alias  ee='echo "[$0] emacsclient -e \"(kill-emacs)\""; emacsclient -e "(kill-emacs)"'
+alias  er='echo "[$0] "; ee; ecw'
 #alias emacs='echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* '
 
+function e(){
+    xprop -name emacs >/dev/null
+    #echo $?
+    if [ "$?" != "1" ] ;then
+        #(echo "[$0] emacsclient -n $*"; emacsclient -n $* )
+        # echo "exist frame"
+        ew
+    else
+        #(echo "[$0] emacsclient -n -c -a \"\" $*"; emacsclient -n -c -a "" $* )
+        # echo "not exist frame"
+        ecw
+    fi
+}
 ########################
 ### [ load Plugin ] ###
 ########################
