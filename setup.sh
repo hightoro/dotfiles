@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # empty-directory
-mkdir .emacs.d/backup
-mkdir .vim/backup
+mkdir ${PWD}/.emacs.d/backup
+mkdir ${PWD}/.vim/backup
 
 # create symbolic-link in $HOME
 ln -sfv  ${PWD}/.gitignore ~/.gitignore
