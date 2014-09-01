@@ -7,7 +7,7 @@
 ################
 ### [ echo ] ###
 ################
-echo "read ~/bashrc"
+echo "read ~/.bashrc"
 
 #########################################################################
 #
@@ -37,8 +37,8 @@ echo "read ~/bashrc"
 #####################################
 ### [ export environment values ] ###
 #####################################
-export BASH_DIR='$HOME/.dotfiles/.bash.d'
-export BASH_ENV='$BASH_DIR/.bashenv'
+export BASH_DIR="$HOME/.dotfiles/.bash.d"
+export BASH_ENV="$BASH_DIR/.bashenv"
 
 
 ########################
@@ -50,13 +50,13 @@ if [ -f /etc/bashrc ]; then
 fi
 
 ## Source environment definitions
-if [ -f $BASH_DIR/.bashenv ]; then
-    source ~/.bash.d/.bashenv
-fi
+#if [ -f $BASH_ENV ]; then
+#    source $BASH_ENV
+#fi
 
 ## Source main .basihrc
 if [ -f $BASH_DIR/.bashrc ]; then
-    source ~/.bash.d/.bashrc
+    source $BASH_DIR/.bashrc
 fi
 
 
