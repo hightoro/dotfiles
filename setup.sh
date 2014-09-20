@@ -5,6 +5,7 @@ mkdir ${PWD}/.emacs.d/backup
 mkdir ${PWD}/.vim/backup
 
 # create symbolic-link in $HOME
+ln -sfv  ${PWD}/.conkyrc   ~/.conkyrc
 ln -sfv  ${PWD}/.gitignore ~/.gitignore
 ln -sfv  ${PWD}/.gitconfig ~/.gitconfig
 ln -sfv  ${PWD}/.tmux.conf ~/.tmux.conf
