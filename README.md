@@ -17,11 +17,10 @@ git clone git:github.com:hightoro/dotfiles ~/.dotfiles
 ```
 
 #Dotfiles
-
-+.bash.d//
-+.conkyrc
-+.emacs.d//
-+.tmux.conf
-+.vim//
-+.zsh.d
++ .bash.d/
++ .conkyrc
++ .emacs.d/
++ .tmux.conf
++ .vim/
++ .zsh.d
 
