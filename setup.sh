@@ -17,3 +17,10 @@ ln -sfv  ${PWD}/.bashrc    ~/.bashrc
 #ln -snfv ${PWD}/.bash.d    ~/.bash.d
 ln -sfv  ${PWD}/.vimrc     ~/.vimrc
 ln -snfv ${PWD}/.vim       ~/.vim
+
+# git submodule
+git submodule init
+git submodule update
+
+# other setting
+
