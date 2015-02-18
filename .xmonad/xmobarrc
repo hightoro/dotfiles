@@ -10,7 +10,7 @@ Config {
        -- layout
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{%multicpu% %coretemp% | %memory% %swap% | %dynnetwork%  | | <fc=#c7a273>%date%</fc> "
+       , template = " %StdinReader% | %uname%}{%multicpu% | %memory% . %swap% | %dynnetwork%  | %EGPF% | <fc=#c7a273>%date%</fc> "
 
        -- general behavior
        , lowerOnStart = False
@@ -45,7 +45,7 @@ Config {
                                           , "--high"   , "#88b986"
                                           ] 10
 
-                    , Run MultiCpu        [ "-t"       , "CPU: <total0>% . <total1>%"
+                    , Run MultiCpu        [ "-t"       , "CPU1: <total0>% . CPU2: <total1>%"
                                           , "-L"       , "40"
                                           , "-H"       , "85"
                                           , "--normal" , "#d3d7cf"
@@ -61,7 +61,7 @@ Config {
                                           , "--high"   , "darkred"
                                           ] 50
 
-                    , Run Memory          [ "-t"       , "<usedratio>%"
+                    , Run Memory          [ "-t"       , "Mem: <usedratio>%"
                                           , "-L"       , "40"
                                           , "-H"       , "90"
                                           , "--normal" , "#d3d7cf"
