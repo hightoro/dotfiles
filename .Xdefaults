@@ -26,7 +26,7 @@ URxvt.saveLines: 50
 URxvt.internalBorder: 3
 URxvt.lineSpace: 0
 -
-URxvt*shading: 80
+URxvt*shading: 40
 URxvt*inheritPixmap: true
  
 ! Fonts

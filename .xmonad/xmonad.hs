@@ -78,5 +78,6 @@ myPP b = xmobarPP
 
 -- Start up (at xmonad beggining), like "wallpaper" or so on
 myStartup = do
-        spawn "feh --bg-fill ~/Pictures/wallpaper/WoodHouse.jpg"
-        spawn "compton --config ~/.config/compton.conf"
+        spawn "feh --bg-fill /usr/share/backgrounds/linuxmint/default_background.jpg"
+--        spawn "compton --config ~/.config/compton.conf"
+        spawn "compton"
