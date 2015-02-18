@@ -1,0 +1,76 @@
+-- -*- mode:haskell -*-
+Config {
+
+       -- appearance
+         font     = "xft:Ricty:bold:size=10:antialias=true"
+       , bgColor  = "#1a1e1b"
+       , fgColor  = "#676767"
+       , position = Top
+
+       -- layout
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% }{%multicpu% %coretemp% | %memory% %swap% | %dynnetwork%  | | <fc=#c7a273>%date%</fc> "
+
+       -- general behavior
+       , lowerOnStart = False
+
+       -- plugins
+       --   Numbers can be automatically colored according to their value. xmobar
+       --   decides color based on a three-tier/two-cutoff system, controlled by
+       --   command options:
+       --     --Low sets the low cutoff
+       --     --High sets the high cutoff
+       --
+       --     --low sets the color below --Low cutoff
+       --     --normal sets the color between --Low and --High cutoffs
+       --     --High sets the color above --High cutoff
+       --
+       --   The --template option controls how the plugin is displayed. Text
+       --   color can be set by enclosing in <fc></fc> tags. For more details
+       --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
+       , commands = [ Run Weather "EGPF"  [ "-t"       , "<station>: <tempC>°C"
+                                          , "-L"	   , "18"
+                                          , "-H"       , "25"
+                                          , "--normal" , "green"
+                                          , "--high"   , "red"
+                                          , "--low"    , "lightblue"
+                                          ] 36000
+
+                    -- network activity monitor (dynamic interface resolution)
+                    , Run DynNetwork      [ "-t"       , "<dev>: ⇩ <rx>kB/s : ⇧ <tx>kB/s"
+                                          , "-L"       , "400"
+                                          , "-H"       , "2000"
+                                          , "--normal" , "#d3d7cf"
+                                          , "--high"   , "#88b986"
+                                          ] 10
+
+                    , Run MultiCpu        [ "-t"       , "CPU: <total0>% . <total1>%"
+                                          , "-L"       , "40"
+                                          , "-H"       , "85"
+                                          , "--normal" , "#d3d7cf"
+                                          , "--high"   , "#c16666"
+                                          ] 50
+
+                    -- cpu core temperature monitor
+                    , Run CoreTemp        [ "-t"       , "Temp: <core0>°C|<core1>°C"
+                                          , "-L"       , "70"        -- units: °C
+                                          , "-H"       , "80"        -- units: °C
+                                          , "--low"    , "darkgreen"
+                                          , "--normal" , "darkorange"
+                                          , "--high"   , "darkred"
+                                          ] 50
+
+                    , Run Memory          [ "-t"       , "<usedratio>%"
+                                          , "-L"       , "40"
+                                          , "-H"       , "90"
+                                          , "--normal" , "#d3d7cf"
+                                          , "--high"   , "#c16666"
+                                          ] 10
+
+                    , Run Swap [] 10
+                    , Run Com "uname" ["-s","-r"] "" 36000
+                    , Run Date "%a %m/%d %H:%M" "date" 10
+                    , Run StdinReader
+                    ]
+       }

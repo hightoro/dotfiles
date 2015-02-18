@@ -21,15 +21,25 @@
 .emacs.d/history
 .emacs.d/clang-complete
 .emacs.d/ac-comphist.dat
+.emacs.d/.session
+.emacs.d/.recentf
 
 ## vim
 .vim/bundle/*/
 !.vim/bundle/neobundle.vim/
 .vim/buckup/
 
+## xmonad
+.xmonad/xmonad.errors
+.xmonad/xmonad.hi
+.xmonad/xmonad.o
+.xmonad/xmonad-x86_64-linux
+.xmonad/*.swp
+
 ## zsh
 .zsh.d/.zsh_history
 .zsh.d/.zsh_local
+.zsh.d/.zcompcache
 .zsh.d/.zcompdump
 .zsh.d/.zsh_disp
 
