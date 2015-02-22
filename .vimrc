@@ -81,7 +81,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 " gitへのアクセスプロトコルをsshに変更
 "let g:neobundle_default_git_protocol='ssh'
-let g:neobundle#types#git#default_protocol = 'ssh'
+"let g:neobundle#types#git#default_protocol = 'ssh'
 "let g:neobundle#types#git#default_protocol = 'git'
 "let g:neobundle#default_sites = "github"
 

@@ -23,9 +23,9 @@ import XMonad.Layout.NoBorders         -- In Full mode, border is no use
 main = do
      xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc"
      xmonad defaultConfig
-		{ terminal           = myTerminal
-		, modMask            = myModMask
-		, borderWidth        = myBorderWidth
+	{ terminal           = myTerminal
+	, modMask            = myModMask
+	, borderWidth        = myBorderWidth
         , normalBorderColor  = "#5a908e"
         , focusedBorderColor = "#99cb81"
    -- key bindings
@@ -74,10 +74,10 @@ myPP b = xmobarPP
        { ppOutput = hPutStrLn b
        , ppTitle  = xmobarColor "green" "" . shorten 50
        }
---myPP = xmobarPP {ppTitle  = xmobarColor "green" "" . shorten 50}
 
 -- Start up (at xmonad beggining), like "wallpaper" or so on
 myStartup = do
+	spawn "feh --bg-fill ~/Image/wallpaper1.png"
         spawn "feh --bg-fill /usr/share/backgrounds/linuxmint/default_background.jpg"
 --        spawn "compton --config ~/.config/compton.conf"
         spawn "compton"
