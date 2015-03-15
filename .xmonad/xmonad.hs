@@ -18,11 +18,16 @@ import XMonad.Hooks.ManageDocks        -- avoid xmobar area
 import XMonad.Layout.DragPane          -- see only two window
 import XMonad.Layout.ToggleLayouts     -- Full window at any time
 import XMonad.Layout.NoBorders         -- In Full mode, border is no use
+import XMonad.Util.WorkspaceCompare
+import XMonad.Actions.CycleWS
+import XMonad.Layout.MultiToggle
+import XMonad.Layout.MultiToggle.Instances
+import XMonad.Config.Desktop (desktopLayoutModifiers)
 
 -- main
 main = do
      xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc"
-     xmonad defaultConfig
+     xmonad $ defaultConfig
 	{ terminal           = myTerminal
 	, modMask            = myModMask
 	, borderWidth        = myBorderWidth
@@ -35,6 +40,15 @@ main = do
         , logHook            = myLogHook xmproc
         , startupHook        = myStartupHook
         }
+ 	`additionalKeysP`
+	[ ("M-n", moveTo Next NonEmptyWS)
+	, ("M-p", moveTo Prev NonEmptyWS)
+    	, ("M-S-n", do t <- findWorkspace getSortByIndex Next EmptyWS 1
+                   (windows . W.shift) t
+                   (windows . W.greedyView) t)
+    	, ("M-S-p", shiftTo Prev EmptyWS)
+    	, ("M-f", sendMessage $ Toggle FULL)
+	]
 
 
 -- my settings
@@ -81,3 +95,4 @@ myStartup = do
         spawn "feh --bg-fill /usr/share/backgrounds/linuxmint/default_background.jpg"
 --        spawn "compton --config ~/.config/compton.conf"
         spawn "compton"
+	spawn "urxvt"
