@@ -42,16 +42,7 @@ main = do
         , startupHook        = myStartupHook
         }
 
-	`additionalKeysP`
-
-	[ ("M-<R>", moveTo Next NonEmptyWS)
-	, ("M-<L>", moveTo Prev NonEmptyWS)
---	, ("M-S-<R>", do t <- findWorkspace getSortByIndex Next EmptyWS 1
---		 (windows . W.shift) t
---		 (windows . W.greedyView) t)
-	, ("M-S-<L>", shiftTo Prev EmptyWS)
-	, ("M-f", sendMessage $ ToggleLayout )
-	]
+	`additionalKeysP` myKeys
 
 
 -- my settings
@@ -59,7 +50,7 @@ myTerminal     = "urxvt"   -- light weight terminal "rxvt-unicode"
 myModMask      = mod4Mask  -- Home / Super_L
 myBorderWidth  = 2
 myLayoutHook   = toggleLayouts (noBorders Full) $ avoidStruts $ myLayout   -- any time Full mode, avoid xmobar area
-myManageHook   = myManageShift <+> myManageFloat <+> manageDocks
+myManageHook   = myManageShift <+> myManageFloat <+> myManageFull <+> manageDocks
 myLogHook b    = dynamicLogWithPP $ myPP b
 myStartupHook  = myStartup
 
@@ -83,7 +74,8 @@ myManageShift = composeAll
 -- new window will created in Float mode
 myManageFloat = composeAll
             [ className =? "MPlayer" --> doFloat
-            , className =? "Gimp"    --> doFloat]
+            , className =? "Gimp"    --> doFloat
+            ]
 
 
 myManageFull = composeAll
@@ -101,4 +93,13 @@ myStartup = do
         spawn "feh --bg-fill /usr/share/backgrounds/linuxmint/default_background.jpg"
 --        spawn "compton --config ~/.config/compton.conf"
         spawn "compton"
-	spawn "urxvt"
+	--spawn "urxvt"
+
+myKeys = [ ("M-<R>", moveTo Next NonEmptyWS)
+       	 , ("M-<L>", moveTo Prev NonEmptyWS)
+--	     , ("M-S-<R>", do t <- findWorkspace getSortByIndex Next EmptyWS 1
+--		 (windows . W.shift) t
+--		 (windows . W.greedyView) t)
+         , ("M-S-<L>", shiftTo Prev EmptyWS)
+         , ("M-f", sendMessage $ ToggleLayout )
+         ]
