@@ -29,7 +29,8 @@ import XMonad.Config.Desktop (desktopLayoutModifiers)
 main = do
      xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc"
      xmonad $ defaultConfig
-	{ terminal           = myTerminal
+	{ workspaces         = myWorkspaces
+	, terminal           = myTerminal
 	, modMask            = myModMask
 	, borderWidth        = myBorderWidth
         , normalBorderColor  = "#5a908e"
@@ -46,6 +47,7 @@ main = do
 
 
 -- my settings
+myWorkspaces   = [" main "," editor "," browser "," media "," sub1 "," sub2 "," sub3 "," sub4 "]
 myTerminal     = "urxvt"   -- light weight terminal "rxvt-unicode"
 myModMask      = mod4Mask  -- Home / Super_L
 myBorderWidth  = 2
@@ -65,8 +67,8 @@ myLayout = (spacing 8 $ ResizableTall 1 (3/100) (1/2) [])
 -- some window must created there
 myManageShift = composeAll
             -- if you want to know className, type "$ xprop|grep CLASS" on shell
-            [ className =? "Firefox" --> viewShift "3"
-            , className =? "Opera"   --> viewShift "3"
+            [ className =? "Firefox" --> viewShift " browser "
+            , className =? "Opera"   --> viewShift " browser "
             ]
             where viewShift = doF . liftM2 (.) W.view W.shift
 
