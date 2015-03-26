@@ -1,0 +1,90 @@
+
+;; インストールリストを作成
+(defvar my/packages
+ '(
+   ;; init
+   init-loader
+
+   ;; theme
+   nzenburn-theme solarized-theme atom-dark-theme
+
+   ;;;;;;;;;;;;;;;;
+
+   ;; buffer utils
+   ;buffer-move
+
+   ;; elscreen
+   ;elscreen
+
+   ;; tabbar
+   tabbar
+
+   ;; powerline
+   powerline
+
+   ;; scroll
+   yascroll
+
+   ;; cursor
+   multiple-cursors
+
+   ;; paren
+   smartparens
+
+   ;; highlight
+   hlinum volatile-highlights highlight-thing hiwin
+
+   ;;;;;;;;;;;;;;;;
+
+   ;; anything/helm
+   helm
+
+   ;; search/grep
+   anzu
+
+   ;; smartrep
+   smartrep
+
+   ;; expand-region
+   expand-region
+
+   ;; undo
+   undo-tree undohist
+
+   ;; popwin + direx
+   popwin direx
+
+   ;;;;;;;;;;;;;;;;
+
+   ;; git
+   magit git-gutter git-gutter-fringe
+
+   ;;;;;;;;;;;;;;;;
+
+  ;; auto-complete
+   auto-complete fuzzy popup pos-tip auto-complete-clang-async
+
+   ;; snippet
+   yasnippet
+
+   ;; flymake
+   flycheck flycheck-pos-tip ;flymake-jslint
+
+   ;; folding
+   fold-dwim
+
+   ;; quick-run
+   quickrun
+
+   ;;;;;;;;;;;;;;;;
+
+   ;; C/C++
+   c-eldoc
+
+   ;;;; go go-mode
+
+   ;;;; python jedi
+
+))
+
+

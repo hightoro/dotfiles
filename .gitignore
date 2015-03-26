@@ -22,7 +22,10 @@
 .emacs.d/clang-complete
 .emacs.d/ac-comphist.dat
 .emacs.d/.session
+.emacs.d/session.*
 .emacs.d/.recentf
+.emacs.d/.cask/
+.emacs.d/el-get/
 
 ## vim
 .vim/bundle/*/

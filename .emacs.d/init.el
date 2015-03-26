@@ -1,4 +1,7 @@
-;
+;;2行はこの設定ファイルをどこか隔離されたディレクトリに置いて試したい場合にも対応するための設定
+(when load-file-name
+  (setq user-emacs-directory (file-name-directory load-file-name)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; enveroment ( path ) ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -36,11 +39,36 @@
 ;;;;;;;;;;;;;;;
 ;;; Emacs24標準のパッケージマネージャを使用する
 (require 'package)
+;;; setting directory
+(setq package-user-dir (concat user-emacs-directory "elpa"))
 ;;; パッケージを追加
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")) ;; MELPAを追加
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/")) ;; Marmaladeを追加
+;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/")) ;; Marmaladeを追加
 ;; パッケージの初期化
 (package-initialize)
+
+;; パッケージ情報の更新
+(package-refresh-contents)
+
+;; Install Melpa packages
+(require 'cl)
+(load "~/.emacs.d/Package")
+(dolist (package my/packages)
+  (when (or (not (package-installed-p package)))
+    (package-install package)))
+
+;;;;;;;;;;;;;;
+;;; el-get ;;;
+;;;;;;;;;;;;;;
+;;; El-Getがインストールされていればそれを有効化し,
+;;; そうでなければGitHubからダウンロードしてインストールする
+(add-to-list 'load-path (locate-user-emacs-file "el-get/el-get"))
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
 
 ;;;;;;;;;;;;;;;;;;;
 ;;; init-loader ;;;
