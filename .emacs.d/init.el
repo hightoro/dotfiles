@@ -48,7 +48,7 @@
 (package-initialize)
 
 ;; パッケージ情報の更新
-(package-refresh-contents)
+;;(package-refresh-contents)
 
 ;; Install Melpa packages
 (require 'cl)
