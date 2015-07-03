@@ -89,7 +89,7 @@ local WHITE="%{${fg[white]}%}"
 case ${UID} in
 0)
     ## rootユーザの場合
-    PROMPT="%B%U%${MAGENTA}%n${DEFAULT}%u%b@%U${WHITE}%m%u${RED}]# ${RESET} "
+    PROMPT="%B%U%${MAGENTA}%n${DEFAULT}%u%b@%U${WHITE}%m%u${DEFAULT}]%(?.#.%F{red}#%f) ${RESET}"
     PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
     RPROMPT="%{$fg_bold[white]%}[%{$reset_color%}%{$fg[cyan]%}%~%{$reset_color%}%{$fg_bold[white]%}]%{$reset_color%}"
     SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
@@ -426,8 +426,8 @@ REPORTTIME=3
 ### [ Set Alias ] ###
 #####################
 #---[ unix cmd ]---#
-alias l='ls -la'
-alias ll='ls -l'
+alias l='ls -lha'
+alias ll='ls -lh'
 alias la='ls -a'
 alias cp='nocorrect cp -i'
 alias hi='history 50'
@@ -560,7 +560,9 @@ fi ##--------------------------------------------------------------##
 ### [ Set tmux ] ###
 #####################
 if [ -z $TMUX ]; then
-  if $(tmux has-session); then
+  if [ $UID == 0 ]; then
+    ;
+  elif $(tmux has-session); then
     tmux -2 attach
   else
     tmux -2
