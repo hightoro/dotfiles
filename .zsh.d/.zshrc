@@ -89,14 +89,14 @@ local WHITE="%{${fg[white]}%}"
 case ${UID} in
 0)
     ## rootユーザの場合
-    PROMPT="%B%U%${MAGENTA}%n${DEFAULT}%u%b@%U${WHITE}%m%u${DEFAULT}]%(?.#.%F{red}#%f) ${RESET}"
+    PROMPT="%B%U${RED}%n${DEFAULT}%u%b@%U${WHITE}%m%u${DEFAULT}]%(?.#.%F{red}#%f) ${RESET}"
     PROMPT2="%{$fg[magenta]%}%_%{$reset_color%}%{$fg_bold[white]%}>>%{$reset_color%} "
-    RPROMPT="%{$fg_bold[white]%}[%{$reset_color%}%{$fg[cyan]%}%~%{$reset_color%}%{$fg_bold[white]%}]%{$reset_color%}"
+    RPROMPT="%B${WHITE}%b[${RESET}${CYAN}%~${RESET}%B${white}%b]${RESET}"
     SPROMPT="%{$fg_bold[red]%}correct%{$reset_color%}: %R -> %r ? "
 
     ## rootユーザー且つリモート接続の場合
     [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-      PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+      PROMPT="%B%U${MAGENTA}%n${DEFAULT}%u%b@%U${WHITE}%m%u${DEFAULT}]%(?.#.%F{red}#%f) ${RESET}"
     ;;
 *)
     ## 一般ユーザの場合
@@ -560,7 +560,7 @@ fi ##--------------------------------------------------------------##
 ### [ Set tmux ] ###
 #####################
 if [ -z $TMUX ]; then
-  if [ $UID == 0 ]; then
+  if [ $UID -eq 0 ]; then
     ;
   elif $(tmux has-session); then
     tmux -2 attach
