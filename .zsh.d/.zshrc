@@ -34,7 +34,7 @@ autoload -Uz colors; colors
 #   37:    白(前景色) 
 #   39:    デフォルト(前景色) 
 #   40:    黒(背景色) 
-#   41:    赤(背景色) 
+vv#   41:    赤(背景色) 
 #   42:    緑(背景色) 
 #   43:    茶(背景色) 
 #   44:    青(背景色) 
@@ -244,7 +244,7 @@ linux*)
   ;;
 cygwin)
   #alias ls="ls -F --color=auto"
-  alias ls="ls -I'NTUSER.DAT*' -I'ntuser*' -F --color=auto"
+  alias ls="ls -I'NTUSER.DAT*' -I'ntuser*' -F --color=auto" ;#Users以下のファイル非表示
   ;;
 esac
 
@@ -559,13 +559,19 @@ fi ##--------------------------------------------------------------##
 #####################
 ### [ Set tmux ] ###
 #####################
+## cygwin用の処理
+if [ $OSTYPE -eq "cygwin" ]; then
+    export TMUX_TMPDIR=/var/run/tmux
+    mkdir /var/run/tmux
+fi
+## 自動起動
 if [ -z $TMUX ]; then
   if [ $UID -eq 0 ]; then
     ;
   elif $(tmux has-session); then
-    tmux -2 attach
+    #tmux -2 attach
   else
-    tmux -2
+    #tmux -2
   fi
 fi
 

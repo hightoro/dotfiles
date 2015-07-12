@@ -1,15 +1,23 @@
-; key-bind
+;;; key-bind
 
-;;; キーバインド
-(global-set-key (kbd "C-x C-c") 'nil)                    ;;
+;; System
+(global-set-key (kbd "C-x C-c") 'nil)                    ;; C-x C-c(Quit)を無効か
 (global-set-key (kbd "C-x C-z") 'nil)                    ;;
 ;(define-key global-map "\C-h" 'delete-backward-char)     ;; 削除
+
+;; Text
 (global-set-key (kbd "C-w") 'nil)                        ;; C-w(Cut)を排除
 (global-set-key (kbd "C-d") 'nil)                        ;; C-d(delete)を排除
 (global-set-key (kbd "C-t") 'nil)                        ;; C-c(transpose-chars)を排除
 (global-set-key (kbd "C-z") 'undo)                       ;; C-z で undo
+
+;; X
+
+(global-set-key (kbd "M-S-y") 'x-clipboard-yank)         ;; clip-boardからコピー
+
+;; windows
 (global-set-key (kbd "C-S-w") 'clipboard-kill-ring-save) ;; clip-boardからヤンク
-(global-set-key (kbd "C-S-y") 'x-clipboard-yank)         ;; clip-boardからコピー
+(global-set-key (kbd "C-S-y") 'clipboard-yank)         ;; clip-boardからコピー
 
 ;; windowが１つならsplitする
 (defun other-window-or-split ()

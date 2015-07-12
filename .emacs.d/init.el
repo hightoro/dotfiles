@@ -79,3 +79,9 @@
 ;(init-loader-load)                           ; 指定しなければ"~/init-loader-directory/"を読みに行く
 (init-loader-load "~/.emacs.d/inits/")
 
+;;;;;;;;;;;;;;;;;;;;
+
+;以下は勝手に追加されていくものたち
+
+
+
