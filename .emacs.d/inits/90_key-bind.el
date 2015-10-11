@@ -1,5 +1,18 @@
 ;;; key-bind
 
+;;; 覚書 ;;;;;;;;;;;;;;;;;;;
+;
+; [\記法]
+;   "\C-h"      >>  Ctrl+h
+;   "\M-h"      >>  Meta+h
+;
+; [kbd記法]
+;   (kbd "C-h") >>  Ctrl+h
+;   (kbd "M-;") >>  Ctrl+;
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; System
 (global-set-key (kbd "C-x C-c") 'nil)                    ;; C-x C-c(Quit)を無効か
 (global-set-key (kbd "C-x C-z") 'nil)                    ;;
@@ -36,16 +49,7 @@
 ;; I never use C-x C-c
 (defalias 'exit 'save-buffers-kill-emacs)
 
+;;; direx
+(global-set-key (kbd "C-x X-j") 'direx-project:jump-to-project-root-other-window)
+(define-key direx:direx-mode-map (kbd "K") 'direx-k)
 
-;;; 覚書 ;;;;;;;;;;;;;;;;;;;
-;
-; [\記法]
-;   "\C-h"      >>  Ctrl+h
-;   "\M-h"      >>  Meta+h
-;
-; [kbd記法]
-;   (kbd "C-h") >>  Ctrl+h
-;   (kbd "M-;") >>  Ctrl+;
-;
-;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

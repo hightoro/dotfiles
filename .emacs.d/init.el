@@ -20,19 +20,21 @@
 (when (>= emacs-major-version 24)
 (add-to-load-path
 		;"~/.emacs.d/"
-		"elisp"
+		"elisp/"
 		"elpa")
 )
 (when (<= emacs-major-version 23)
 (add-to-load-path
-		"elisp"
+		"elisp/"
 		"emacs23")
 )
 
 ;;; load-pathに追加するフォルダ(通常手法)
 ;(setq load-path (append '("~/.emacs.d/") load-path))
 ;(setq load-path (append '("~/.emacs.d/elisp/") load-path))
+(setq load-path (append '("~/.emacs.d/elisp/") load-path))
 ;(normal-top-level-add-subdirs-to-load-path))
+
 
 ;;;;;;;;;;;;;;;
 ;;; package ;;;

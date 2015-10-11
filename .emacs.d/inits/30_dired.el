@@ -55,3 +55,9 @@
 ;; 左右キーにも割り当てる
 (define-key dired-mode-map (kbd "<left>") 'dired-up-directory)
 (define-key dired-mode-map (kbd "<right>") 'dired-open-in-accordance-with-situation)
+
+
+;; diredに色を付ける(dired-k)
+(require 'dired-k)
+(define-key dired-mode-map (kbd "g") 'dired-k)
+(add-hook 'dired-initial-position-hook 'dired-k)
